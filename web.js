@@ -4,10 +4,12 @@ var doxdox = require('doxdox');
 var express = require('express');
 var server = express();
 
+var rawgit_url = 'https://raw.githubusercontent.com/';
+
 server.get('/:username/:repo', function (req, res) {
 
     request.get({
-        url: 'https://raw.githubusercontent.com/' + req.params.username + '/' + req.params.repo + '/master/package.json',
+        url: rawgit_url + req.params.username + '/' + req.params.repo + '/master/package.json',
         json: true
     }, function (e, r, body) {
 
@@ -18,8 +20,7 @@ server.get('/:username/:repo', function (req, res) {
         };
 
         request.get({
-            url: 'https://raw.githubusercontent.com/' + req.params.username + '/' + req.params.repo + '/master/' + body.main,
-            json: true
+            url: rawgit_url + req.params.username + '/' + req.params.repo + '/master/' + body.main
         }, function (e, r, body) {
 
             res.send(doxdox.parseScript(body, null, config));
