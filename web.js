@@ -6,6 +6,8 @@ var server = express();
 
 var rawgit_url = 'https://raw.githubusercontent.com/';
 
+server.use(express.static(__dirname + '/static'));
+
 server.get('/:username/:repo', function (req, res) {
 
     request.get({
