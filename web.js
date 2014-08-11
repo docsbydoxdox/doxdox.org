@@ -15,6 +15,10 @@ MongoClient.connect(mongoURI, function(err, db) {
 
     repos = db.collection('repos');
 
+    repos.ensureIndex({ date: 1 }, { expireAfterSeconds: 60 * 10 }, function () {
+
+    });
+
 });
 
 var rawgit_url = 'https://raw.githubusercontent.com/';
@@ -29,7 +33,8 @@ server.get('/:username/:repo', function (req, res) {
 
             docs = {
                 url: req.url,
-                content: ''
+                content: '',
+                date: new Date()
             };
 
             request.get({
