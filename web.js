@@ -15,10 +15,6 @@ MongoClient.connect(mongoURI, function(err, db) {
 
     repos = db.collection('repos');
 
-    repos.ensureIndex({ date: 1 }, { expireAfterSeconds: 60 * 10 }, function () {
-
-    });
-
 });
 
 var rawgit_url = 'https://raw.githubusercontent.com/';
