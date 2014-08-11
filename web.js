@@ -71,4 +71,10 @@ server.get('/:username/:repo', function (req, res) {
 
 });
 
+server.get('*', function (req, res) {
+
+    res.redirect('https://github.com/neogeek/doxdox-server/');
+
+});
+
 server.listen(process.env.PORT || 5000);
