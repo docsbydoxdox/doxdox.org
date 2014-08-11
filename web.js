@@ -4,11 +4,18 @@ var doxdox = require('doxdox');
 var express = require('express');
 var server = express();
 
-var redis = require('redis');
-var url = require('url');
-var redisURL = url.parse(process.env.REDISCLOUD_URL);
-var client = redis.createClient(redisURL.port, redisURL.hostname, { no_ready_check: true });
-client.auth(redisURL.auth.split(':')[1]);
+var MongoClient = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
+
+var mongoURI = process.env.MONGOHQ_URL || 'mongodb://localhost:27017/doxdox';
+
+var repos;
+
+MongoClient.connect(mongoURI, function(err, db) {
+
+    repos = db.collection('repos');
+
+});
 
 var rawgit_url = 'https://raw.githubusercontent.com/';
 
@@ -16,13 +23,14 @@ server.use(express.static(__dirname + '/static'));
 
 server.get('/:username/:repo', function (req, res) {
 
-    client.get(req.url, function (err, reply) {
+    repos.findOne({ url: req.url }, function (err, docs) {
 
-        if (reply) {
+        if (!docs) {
 
-            res.send(reply);
-
-        } else {
+            docs = {
+                url: req.url,
+                content: ''
+            };
 
             request.get({
                 url: rawgit_url + req.params.username + '/' + req.params.repo + '/master/package.json',
@@ -41,13 +49,21 @@ server.get('/:username/:repo', function (req, res) {
 
                     body = doxdox.parseScript(body, null, config);
 
-                    client.set(req.url, body);
+                    docs.content = encodeURIComponent(body);
 
-                    res.send(body);
+                    repos.insert(docs, function () {
+
+                        res.send(body);
+
+                    });
 
                 });
 
             });
+
+        } else {
+
+            res.send(decodeURIComponent(docs.content));
 
         }
 
