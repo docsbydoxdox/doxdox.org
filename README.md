@@ -4,8 +4,8 @@
 
 ##Adding the doxdox Badge To Your Repo
 
-![](http://doxdox.herokuapp.com/images/badge.svg)
+![](http://doxdox.org/images/badge.svg)
 
 ```markdown
-[![Latest Documentation](http://doxdox.herokuapp.com/images/badge.svg)](http://doxdox.herokuapp.com/username/repo)
+[![Latest Documentation](http://doxdox.org/images/badge.svg)](http://doxdox.org/username/repo)
 ```
