@@ -44,11 +44,16 @@ server.get('/:username/:repo', function (req, res) {
                     layout: 'bootstrap'
                 };
 
+                var file = body.main;
+
                 request.get({
                     url: rawgit_url + req.params.username + '/' + req.params.repo + '/master/' + body.main
                 }, function (e, r, body) {
 
-                    body = doxdox.parseScript(body, null, config);
+                    body = doxdox.parseScripts([{
+                        name: file,
+                        contents: body
+                    }], null, config);
 
                     docs.content = encodeURIComponent(body);
 
@@ -74,7 +79,7 @@ server.get('/:username/:repo', function (req, res) {
 
 server.get('*', function (req, res) {
 
-    res.redirect('https://github.com/neogeek/doxdox-server/');
+    res.redirect('https://github.com/neogeek/doxdox-server');
 
 });
 
