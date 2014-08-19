@@ -210,10 +210,23 @@
 
 </footer>
 
-<script src="/bower_components/de-pre.js/de-pre.min.js"></script>
+<script>
+/*!
+ * de-pre.js v0.0.1 2014-08-12T22:10:24
+ * https://github.com/neogeek/de-pre.js
+ *
+ * Copyright (c) 2014 Scott Doxey
+ * Released under the MIT license.
+ */
+!function(a,b){"use strict";"function"==typeof define&&void 0!==define.amd?define([],b):a.depre=b}(this,function(a){"use strict";Array.prototype.slice.call(document.querySelectorAll(a)).forEach(function(a){var b=a.previousSibling.nodeValue.match(/([ \t]*)$/),c=a.innerText;c=c.replace(new RegExp("(^|\n)"+b[1],"g"),"$1"),c=c.replace(/^\s+|\s+$/g,""),a.innerText=c})});
+</script>
 <script>
 
-depre('pre');
+(function () {
+
+    depre('pre');
+
+}());
 
 </script>
 
