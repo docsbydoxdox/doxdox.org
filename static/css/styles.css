@@ -1,0 +1,129 @@
+* {
+    margin: 0; padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: aktiv-grotesk-std, sans-serif;
+    font-size: 1em;
+    line-height: 1.3em;
+}
+
+a {
+    color: #00f;
+}
+
+.wrapper {
+    margin: auto;
+    padding: 1em;
+    max-width: 1000px;
+}
+
+.promo {
+    position: relative;
+    height: 100vh;
+    max-height: 60vw;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    background: url('/images/background.jpg') no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.promo:before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.4;
+}
+
+.promo .copy {
+    position: relative;
+    padding: 2.5em 0;
+    font-size: 1.3em;
+    z-index: 9998;
+}
+
+.promo .logo {
+    color: inherit;
+    text-decoration: none;
+}
+
+.promo .tagline {
+    padding: 1.5em;
+    line-height: 1.3em;
+}
+
+.promo .screenshot {
+    position: absolute;
+    top: 10em;
+    left: 10%;
+    width: 80%;
+    height: auto;
+    z-index: 9999;
+    transition: top 0.25s ease;
+}
+
+.content h2,
+.content h3,
+.content p {
+    margin: 1em 0;
+}
+
+.content h3 {
+    font-weight: normal;
+}
+
+.content code,
+.content pre {
+    font-family: 'Monaco', monospace;
+    font-size: 0.8em;
+    line-height: 1.3em;
+    background-color: #F8F8F8;
+}
+
+.content code {
+    padding: .25em .5em;
+}
+
+.content pre {
+    margin: 1em 0;
+    padding: 1em;
+    overflow: auto
+}
+
+.content ul,
+.content ol {
+    margin: 2em;
+}
+
+.content ul li,
+.content ol li {
+    margin: .5em 0;
+}
+
+.footnotes {
+    font-size: .85em;
+    line-height: 1.3em;
+}
+
+.footer {
+    margin: 5em 0;
+    text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+
+    body {
+        font-size: 1.2em;
+        line-height: 1.3em;
+    }
+
+}

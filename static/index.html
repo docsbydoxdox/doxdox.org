@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<title>doxdox - A better way to generate documentation.</title>
+<script type="text/javascript" src="//use.typekit.net/cvz7nvs.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body>
+
+<header class="promo">
+
+    <div class="copy">
+
+        <h1><a href="/" class="logo">doxdox</a></h1>
+
+        <blockquote class="tagline">A better way to generate documentation.</blockquote>
+
+    </div>
+
+    <img src="/images/screenshot.png" class="screenshot">
+
+</header>
+
+<section id="installing-doxdox" class="content">
+
+    <div class="wrapper">
+
+        <h2><a href="#installing-doxdox">Installing doxdox</a></h2>
+
+        <p><b>doxdox</b> is a command line utility written in <a href="http://nodejs.org">Node.js</a> and installed via <a href="https://www.npmjs.org">npm</a>.</p>
+
+        <p>The following command will install <b>doxdox</b> globally on your computer allowing you to access it from any project.</p>
+
+        <pre>
+        $ npm install doxdox -g
+        </pre>
+
+        <p>To install it on a per-project basic use the following code to install and update <code>package.json</code>.</p>
+
+        <pre>
+        $ npm install doxdox --save
+        </pre>
+
+    </div>
+
+</section>
+
+<section id="getting-started" class="content">
+
+    <div class="wrapper">
+
+        <h2><a href="#getting-started">Getting Started</a></h2>
+
+        <h3>Basic Usage</h3>
+
+        <p>Running <b>doxdox</b> without any options will walk the current directory looking for JavaScript files<sup><a href="#ftn-1" id="ftn-1-return">1</a></sup> and generate documentation from the files it finds with valid <a href="http://usejsdoc.org">JSDoc</a> comment blocks.</p>
+
+        <p><b>doxdox</b> will also search the current directory for a <code>package.json</code> file to populate both the title and description of the documentation.</p>
+
+        <p>This will output the contents to <code>stdout</code>.</p>
+
+        <pre>
+        $ doxdox
+        </pre>
+
+        <p>To store the contents in a file use the <code>cat</code> shorthand operator <code>&gt;</code>.</p>
+
+        <pre>
+        $ doxdox > docs/index.html
+        </pre>
+
+        <h3>Referencing a Specific File</h3>
+
+        <pre>
+        $ doxdox ~/git/github/Facade.js/facade.js
+        </pre>
+
+        <h3>Referencing a Specific Directory</h3>
+
+        <pre>
+        $ doxdox ~/git/github/Facade.js/
+        </pre>
+
+    </div>
+
+</section>
+
+<section id="advanced-usage" class="content">
+
+    <div class="wrapper">
+
+        <h2><a href="#advanced-usage">Advanced Usage</a></h2>
+
+        <h3>Specifying a Title</h3>
+
+        <pre>
+        $ doxdox --title "Facade.js"
+        </pre>
+
+        <h3>Specifying a Description</h3>
+
+        <pre>
+        $ doxdox --description "Drawing shapes, images and text in HTML5 canvas made easy."
+        </pre>
+
+        <h3>Specifying an Output Path</h3>
+
+        <pre>
+        $ doxdox --output docs/index.html
+        </pre>
+
+        <h3>Choosing a Layout</h3>
+
+        <pre>
+        $ doxdox --layout Bootstrap
+        </pre>
+
+        <pre>
+        $ doxdox --layout Markdown
+        </pre>
+
+        <h3>Specifying a Custom Layout</h3>
+
+        <pre>
+        $ doxdox --output docs/template.hbs
+        </pre>
+
+        <h3>Specifying a Specific Package.json File</h3>
+
+        <pre>
+        $ doxdox --package ~/git/github/Facade.js/package.json
+        </pre>
+
+    </div>
+
+</section>
+
+<section id="doxdox-online" class="content">
+
+    <div class="wrapper">
+
+        <h2><a href="#doxdox-online">doxdox Online</a></h2>
+
+        <p><b>doxdox</b> is also available as a PaaS for single file libraries hosted on GitHub.</p>
+
+        <p>To use this service add the following snippet to your README.md file. Replace <i>username</i> and <i>repo</i> with the path of the project on GitHub.</p>
+
+        <p>The service cached documentation for 10 minutes so if your changes aren't showing up immediately wait at least 10 minutes before trying again.</p>
+
+        <pre>
+        [![Latest Documentation](http://doxdox.org/images/badge.svg)](http://doxdox.org/username/repo)
+        </pre>
+
+        <p><img src="http://doxdox.org/images/badge.svg"></p>
+
+    </div>
+
+</section>
+
+<section id="examples" class="content">
+
+    <div class="wrapper">
+
+        <h2><a href="#examples">Examples</a></h2>
+
+        <ul>
+            <li>
+                <a href="http://facade.js">Facade.js</a> - Drawing shapes, images and text in HTML5 canvas made easy.
+                <a href="http://doxdox.org/facadejs/Facade.js"><img src="http://doxdox.org/images/badge.svg"></a>
+            </li>
+            <li>
+                <a href="https://github.com/syntaxtsb/plastick.js">plastick.js</a> - Plastick.js is a lightweight, time-accurate game loop framework for JavaScript, utilizing Facade.js.
+                <a href="http://doxdox.org/syntaxtsb/plastick.js"><img src="http://doxdox.org/images/badge.svg"></a>
+            </li>
+            <li>
+                <a href="https://github.com/neogeek/CanvasToVideo">CanvasToVideo</a> - An experiment in converting Canvas animations to video.
+                <a href="http://doxdox.org/neogeek/CanvasToVideo"><img src="http://doxdox.org/images/badge.svg"></a>
+            </li>
+        </ul>
+
+    </div>
+
+</section>
+
+<section class="content">
+
+    <div class="wrapper">
+
+        <div class="footnotes">
+
+            <ol>
+                <li>
+                    <p><a href="#ftn-1-return" id="ftn-1">↩</a> <b>doxdox</b> will ignore the following directories: <code>.git</code>, <code>node_modules</code>, <code>bower_components</code>, and <code>test</code>. It will also ignore files matching <code>.min</code>, <code>gruntfile</code>, and <code>gulpfile</code>.</p>
+                </li>
+            </ol>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+    <p>Made with ♥ by <a href="https://github.com/neogeek">@neogeek</a></p>
+
+</footer>
+
+<script src="/bower_components/de-pre.js/de-pre.min.js"></script>
+<script>
+
+depre('pre');
+
+</script>
+
+</body>
+</html>
