@@ -9,10 +9,11 @@ body {
     font-family: aktiv-grotesk-std, sans-serif;
     font-size: 1em;
     line-height: 1.3em;
+    color: #333;
 }
 
 a {
-    color: #00f;
+    color: #428bca;
 }
 
 .wrapper {
@@ -70,14 +71,21 @@ a {
     transition: top 0.25s ease;
 }
 
-.content h2,
 .content h3,
 .content p {
     margin: 1em 0;
 }
 
-.content h3 {
-    font-weight: normal;
+.content h2 {
+    margin: 2em 0 1.5em;
+    text-align: center;
+}
+
+.content h2 a {
+    color: #333;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .content code,
