@@ -23,8 +23,7 @@ a {
 
 .promo {
     position: relative;
-    height: 100vh;
-    max-height: 60vw;
+    height: 20em;
     overflow: hidden;
     color: #fff;
     text-align: center;
@@ -63,9 +62,9 @@ a {
 
 .promo .screenshot {
     position: absolute;
-    top: 10em;
-    left: 10%;
-    width: 80%;
+    top: 11em;
+    left: 5%;
+    width: 90%;
     height: auto;
     z-index: 9999;
     transition: top 0.25s ease;
@@ -124,6 +123,11 @@ a {
     body {
         font-size: 1.2em;
         line-height: 1.3em;
+    }
+
+    .promo {
+        height: 100vh;
+        max-height: 70vw;
     }
 
 }
