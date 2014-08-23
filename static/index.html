@@ -13,15 +13,23 @@
 
 <header class="promo">
 
+    <nav>
+        <a href="#installing-doxdox">Install</a> | <a href="#getting-started">Documentation</a> | <a href="https://github.com/neogeek/doxdox">View on GitHub</a>
+    </nav>
+
     <div class="copy">
 
         <h1><a href="/" class="logo">doxdox</a></h1>
 
-        <blockquote class="tagline">A better way to generate documentation.</blockquote>
+        <blockquote class="tagline">A simple solution for auto generated documentation.</blockquote>
+
+        <p><b>doxdox</b> is documentation generator that takes comment blocks from JavaScript files and formats them in to an easy to read HTML document.</p>
+
+        <a href="#installing-doxdox" class="button">Get Started Now</a>
 
     </div>
 
-    <a href="http://doxdox.org/facadejs/Facade.js"><img src="/images/screenshot.png" class="screenshot"></a>
+    <a href="http://doxdox.org/facadejs/Facade.js" class="screenshot"></a>
 
 </header>
 
@@ -33,13 +41,13 @@
 
         <p><b>doxdox</b> is a command line utility written in <a href="http://nodejs.org">Node.js</a> and installed via <a href="https://www.npmjs.org">npm</a>.</p>
 
-        <p>The following command will install <b>doxdox</b> globally on your computer allowing you to access it from any project.</p>
+        <p>The following command will install <b>doxdox</b> globally on your computer, allowing you to access it from any project.</p>
 
         <pre>
         $ npm install doxdox -g
         </pre>
 
-        <p>To install it on a per-project basic use the following code to install and update <code>package.json</code>.</p>
+        <p>Use the following command to install it on a per-project basic.</p>
 
         <pre>
         $ npm install doxdox --save
@@ -129,7 +137,7 @@
         $ doxdox --output docs/template.hbs
         </pre>
 
-        <h3>Specifying a Specific Package.json File</h3>
+        <h3>Specifying a Package.json File</h3>
 
         <pre>
         $ doxdox --package ~/git/github/Facade.js/package.json

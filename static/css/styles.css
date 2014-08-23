@@ -12,8 +12,13 @@ body {
     color: #333;
 }
 
+h1 {
+    font-weight: normal;
+    line-height: 1.3em;
+}
+
 a {
-    color: #428bca;
+    color: #F56037;
 }
 
 .wrapper {
@@ -24,13 +29,13 @@ a {
 
 .promo {
     position: relative;
-    height: 20em;
     overflow: hidden;
-    color: #fff;
-    text-align: center;
-    background: url('/images/background.jpg') no-repeat;
+    background-color: #F56037;
+    background-image: url('/images/cityscape.jpg');
+    background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    -webkit-font-smoothing: antialiased;
 }
 
 .promo:before {
@@ -41,34 +46,59 @@ a {
     right: 0;
     bottom: 0;
     background-color: rgb(0, 0, 0);
-    opacity: 0.4;
+    opacity: 0.5;
+}
+
+.promo nav {
+    position: relative;
+    padding: 1.5em;
+    font-size: .8em;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.promo nav a {
+    color: #fff;
+    display: inline-block;
+    padding: .5em;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    white-space: nowrap;
 }
 
 .promo .copy {
     position: relative;
-    padding: 2.5em 0;
-    font-size: 1.3em;
-    z-index: 9998;
+    padding: 2em;
+    color: #eee;
 }
 
-.promo .logo {
-    color: inherit;
+.promo .copy .logo {
+    display: block;
+    font-size: 2em;
+    font-weight: 600;
+    line-height: 1em;
+    color: #fff;
     text-decoration: none;
 }
 
-.promo .tagline {
-    padding: 1.5em;
+.promo .copy blockquote {
+    margin: .5em 0;
+    font-size: 1.6em;
     line-height: 1.3em;
 }
 
-.promo .screenshot {
-    position: absolute;
-    top: 11em;
-    left: 5%;
-    width: 90%;
-    height: auto;
-    z-index: 9999;
-    transition: top 0.25s ease;
+.promo .copy p {
+    margin: 2em 0;
+    line-height: 1.5em;
+}
+
+.promo .button {
+    display: inline-block;
+    margin: 1em 0;
+    padding: 1em 2em;
+    color: #eee;
+    text-decoration: none;
+    border: 2px solid #eee;
 }
 
 .content h3,
@@ -78,6 +108,7 @@ a {
 
 .content h2 {
     margin: 2em 0 1.5em;
+    line-height: 1.3em;
     text-align: center;
 }
 
@@ -103,7 +134,10 @@ a {
 .content pre {
     margin: 1em 0;
     padding: 1em;
-    overflow: auto
+    overflow: auto;
+    color: #d8ed8e;
+    background-color: #222426;
+    -webkit-font-smoothing: antialiased;
 }
 
 .content ul,
@@ -133,9 +167,35 @@ a {
         line-height: 1.3em;
     }
 
+}
+
+
+@media screen and (min-width: 1000px) {
+
     .promo {
-        height: 100vh;
-        max-height: 70vw;
+        min-height: 100vh;
+    }
+
+    .promo nav {
+        text-align: right;
+    }
+
+    .promo .copy {
+        position: relative;
+        padding-top: 6em;
+        width: 40%;
+        height: 100%;
+    }
+
+    .promo .screenshot {
+        position: absolute;
+        top: 6em;
+        bottom: 0;
+        right: 0;
+        left: 40%;
+        background: url('/images/screenshot.png') no-repeat;
+        background-position: left 10px;
+        background-size: cover;
     }
 
 }
