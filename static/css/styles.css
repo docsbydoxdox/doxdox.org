@@ -30,7 +30,6 @@ a {
 .promo {
     position: relative;
     overflow: hidden;
-    background-color: #F56037;
     background-image: url('/images/cityscape.jpg');
     background-repeat: no-repeat;
     background-position: center center;
