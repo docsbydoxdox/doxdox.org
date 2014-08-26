@@ -62,7 +62,7 @@ a {
 
 .promo .copy {
     position: relative;
-    padding: 2em;
+    padding: 1.5em;
     color: #eee;
 }
 
@@ -203,7 +203,7 @@ a {
 
     .promo .copy {
         position: relative;
-        padding-top: 6em;
+        padding: 6em 2em 2em 2em;
         width: 40%;
         height: 100%;
     }
