@@ -192,7 +192,7 @@ a {
         bottom: 0;
         right: 0;
         left: 40%;
-        background: url('/images/screenshot.png') no-repeat;
+        background: url('/images/screenshot-bootstrap.png') no-repeat;
         background-position: left 10px;
         background-size: cover;
     }
