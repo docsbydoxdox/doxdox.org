@@ -19,7 +19,7 @@
 
     <div class="copy">
 
-        <h1><a href="/" class="logo">doxdox</a></h1>
+        <div><a href="/" class="logo">doxdox</a></div>
 
         <blockquote class="tagline">A simple solution for auto generated documentation.</blockquote>
 
@@ -37,7 +37,7 @@
 
     <div class="wrapper">
 
-        <h2><a href="#installing-doxdox">Installing doxdox</a></h2>
+        <h1><a href="#installing-doxdox">Installing doxdox</a></h1>
 
         <p><b>doxdox</b> is a command line utility written in <a href="http://nodejs.org">Node.js</a> and installed via <a href="https://www.npmjs.org">npm</a>.</p>
 
@@ -47,7 +47,7 @@
         $ npm install doxdox -g
         </pre>
 
-        <p>Use the following command to install it on a per-project basic.</p>
+        <p>Alternatively you can install it on a per-project basic.</p>
 
         <pre>
         $ npm install doxdox --save
@@ -61,67 +61,59 @@
 
     <div class="wrapper">
 
-        <h2><a href="#getting-started">Getting Started</a></h2>
+        <h1><a href="#getting-started">Getting Started</a></h1>
 
-        <h3>Basic Usage</h3>
+        <h2>Basic Usage</h2>
 
-        <p>Running <b>doxdox</b> without any options will walk the current directory looking for JavaScript files<sup><a href="#ftn-1" id="ftn-1-return">1</a></sup> and generate documentation from the files it finds with valid <a href="http://usejsdoc.org">JSDoc</a> comment blocks.</p>
+        <p>Running <b>doxdox</b> without any options will crawl the current directory looking for JavaScript files<sup><a href="#ftn-1" id="ftn-1-return">1</a></sup> and generate documentation from the files it finds containing valid <a href="http://usejsdoc.org">JSDoc</a> comment blocks.</p>
 
-        <p><b>doxdox</b> will also search the current directory for a <code>package.json</code> file to populate both the title and description of the documentation.</p>
+        <p><b>doxdox</b> will also search the current directory for a <code>package.json</code> file in order to populate both the title and description of the generated file.</p>
 
-        <p>This will output the contents to <code>stdout</code>.</p>
+        <h3>Output Contents to stdout</h3>
 
         <pre>
         $ doxdox
         </pre>
 
-        <p>To store the contents in a file use the <code>cat</code> shorthand operator <code>&gt;</code>.</p>
+        <h3>Output Contents to Destination File</h3>
+
+        <p>This can be achieved by using the <code>cat</code> shorthand operator <code>&gt;</code> or the output flag.</p>
 
         <pre>
         $ doxdox > docs/index.html
         </pre>
 
-        <h3>Referencing a Specific File</h3>
+        <pre>
+        $ doxdox --output docs/index.html
+        </pre>
+
+        <h3>Specify Source</h3>
+
+        <p>Instead of allowing <b>doxdox</b> to crawl the current directory you can specify a single JavaScript file or different directory.</p>
 
         <pre>
         $ doxdox ~/git/github/Facade.js/facade.js
         </pre>
 
-        <h3>Referencing a Specific Directory</h3>
-
         <pre>
         $ doxdox ~/git/github/Facade.js/
         </pre>
 
-    </div>
+        <h2>Advanced Usage</h2>
 
-</section>
-
-<section id="advanced-usage" class="content">
-
-    <div class="wrapper">
-
-        <h2><a href="#advanced-usage">Advanced Usage</a></h2>
-
-        <h3>Specifying a Title</h3>
+        <h3>Set Title</h3>
 
         <pre>
         $ doxdox --title "Facade.js"
         </pre>
 
-        <h3>Specifying a Description</h3>
+        <h3>Set Description</h3>
 
         <pre>
         $ doxdox --description "Drawing shapes, images and text in HTML5 canvas made easy."
         </pre>
 
-        <h3>Specifying an Output Path</h3>
-
-        <pre>
-        $ doxdox --output docs/index.html
-        </pre>
-
-        <h3>Choosing a Layout</h3>
+        <h3>Choose a Layout</h3>
 
         <pre>
         $ doxdox --layout Bootstrap
@@ -131,13 +123,15 @@
         $ doxdox --layout Markdown
         </pre>
 
-        <h3>Specifying a Custom Layout</h3>
+        <h3>Use a Custom Layout</h3>
+
+        <p>Layouts are built using <a href="http://handlebarsjs.com">Handlebars</a>. The included layouts, Bootstrap and Markdown, can be <a href="https://github.com/neogeek/doxdox/tree/master/templates">viewed on GitHub</a>.</p>
 
         <pre>
-        $ doxdox --output docs/template.hbs
+        $ doxdox --layout docs/template.hbs
         </pre>
 
-        <h3>Specifying a Package.json File</h3>
+        <h3>Point to a Specific package.json File</h3>
 
         <pre>
         $ doxdox --package ~/git/github/Facade.js/package.json
@@ -151,19 +145,27 @@
 
     <div class="wrapper">
 
-        <h2><a href="#doxdox-online">doxdox Online</a></h2>
+        <h1><a href="#doxdox-online">doxdox Online</a></h1>
 
         <p><b>doxdox</b> is also available as a PaaS for single file libraries hosted on GitHub.</p>
 
-        <p>To use this service add the following snippet to your README.md file. Replace <i>username</i> and <i>repo</i> with the path of the project on GitHub.</p>
-
-        <p>The service cached documentation for 10 minutes so if your changes aren't showing up immediately wait at least 10 minutes before trying again.</p>
+        <p>To use this service add the following snippet to your README file. Replace <code>username</code> and <code>repo</code> with the path of the project on GitHub.</p>
 
         <pre>
         [![Latest Documentation](http://doxdox.org/images/badge.svg)](http://doxdox.org/username/repo)
         </pre>
 
-        <p><img src="http://doxdox.org/images/badge.svg"></p>
+        <p>You must also have a valid <code>package.json</code> file in your project that contains <code>title</code>, <code>description</code> and <code>main</code> key/value pairs.</p>
+
+        <pre>
+        {
+            "name": "facade.js",
+            "description": "Drawing shapes, images and text in HTML5 canvas made easy.",
+            "main": "facade.js"
+        }
+        </pre>
+
+        <p><small><b>Notice:</b> This service caches documentation for up to 10 minutes.</small></p>
 
     </div>
 
@@ -173,20 +175,20 @@
 
     <div class="wrapper">
 
-        <h2><a href="#examples">Examples</a></h2>
+        <h1><a href="#examples">Examples</a></h1>
 
         <ul>
             <li>
-                <a href="http://facade.js">Facade.js</a> - Drawing shapes, images and text in HTML5 canvas made easy.
-                <a href="http://doxdox.org/facadejs/Facade.js"><img src="http://doxdox.org/images/badge.svg"></a>
+                <a href="http://facadejs.com">Facade.js</a> - Drawing shapes, images and text in HTML5 canvas made easy.
+                <a href="http://doxdox.org/facadejs/Facade.js" class="badge"><img src="http://doxdox.org/images/badge.svg"></a>
             </li>
             <li>
                 <a href="https://github.com/syntaxtsb/plastick.js">plastick.js</a> - Plastick.js is a lightweight, time-accurate game loop framework for JavaScript, utilizing Facade.js.
-                <a href="http://doxdox.org/syntaxtsb/plastick.js"><img src="http://doxdox.org/images/badge.svg"></a>
+                <a href="http://doxdox.org/syntaxtsb/plastick.js" class="badge"><img src="http://doxdox.org/images/badge.svg"></a>
             </li>
             <li>
                 <a href="https://github.com/neogeek/CanvasToVideo">CanvasToVideo</a> - An experiment in converting Canvas animations to video.
-                <a href="http://doxdox.org/neogeek/CanvasToVideo"><img src="http://doxdox.org/images/badge.svg"></a>
+                <a href="http://doxdox.org/neogeek/CanvasToVideo" class="badge"><img src="http://doxdox.org/images/badge.svg"></a>
             </li>
         </ul>
 
