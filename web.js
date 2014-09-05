@@ -41,7 +41,7 @@ server.get('/:username/:repo', function (req, res) {
                 var config = {
                     title: body.name,
                     description: body.description,
-                    layout: 'bootstrap'
+                    layout: 'templates/bootstrap.hbs'
                 };
 
                 var file = body.main;
