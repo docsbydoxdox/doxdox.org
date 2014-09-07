@@ -8,9 +8,9 @@
     "main": "web.js",
     "license": "MIT",
     "dependencies": {
-        "express": "4.8.7",
-        "request": "2.40.0",
-        "doxdox": "0.0.8",
+        "express": "4.8.8",
+        "request": "2.42.0",
+        "doxdox": "0.0.9",
         "mongodb": "1.4.10"
     }
 }
