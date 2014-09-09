@@ -10,7 +10,7 @@
     "dependencies": {
         "express": "4.8.8",
         "request": "2.42.0",
-        "doxdox": "0.0.9",
+        "doxdox": "0.0.10",
         "mongodb": "1.4.10"
     }
 }
