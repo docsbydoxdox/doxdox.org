@@ -1,3 +1,5 @@
+var url = require('url');
+
 var request = require('request');
 var doxdox = require('doxdox');
 
@@ -18,6 +20,33 @@ MongoClient.connect(mongoURI, function(err, db) {
 });
 
 var rawgit_url = 'https://raw.githubusercontent.com/';
+
+server.get('/', function (req, res, next) {
+
+    var redirect,
+        repo;
+
+    if (req.headers.referer) {
+
+        redirect = url.parse(req.headers.referer);
+
+        if (redirect.host === 'github.com') {
+
+            repo = redirect.path.match(/^\/.+?\/[^\/]+\/?/);
+
+            if (repo) {
+
+                res.redirect(repo);
+
+            }
+
+        }
+
+    }
+
+    next();
+
+});
 
 server.use(express.static(__dirname + '/static'));
 
