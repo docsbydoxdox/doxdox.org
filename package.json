@@ -11,6 +11,6 @@
         "express": "4.9.7",
         "request": "2.45.0",
         "mongodb": "1.4.19",
-        "doxdox": "0.0.12"
+        "doxdox": "0.0.13"
     }
 }
