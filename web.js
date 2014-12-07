@@ -79,16 +79,18 @@ server.get('/:username/:repo', function (req, res) {
                     url: rawgit_url + req.params.username + '/' + req.params.repo + '/master/' + body.main
                 }, function (e, r, body) {
 
-                    body = doxdox.parseScripts([{
+                    doxdox.parseScripts([{
                         name: file,
                         contents: body
-                    }], null, config);
+                    }], config).then(function (content) {
 
-                    docs.content = encodeURIComponent(body);
+                        docs.content = encodeURIComponent(content);
 
-                    repos.insert(docs, function () {
+                        repos.insert(docs, function () {
 
-                        res.send(body);
+                            res.send(content);
+
+                        });
 
                     });
 
