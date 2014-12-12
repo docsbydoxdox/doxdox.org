@@ -191,7 +191,7 @@ a {
 
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 850px) {
 
     .promo {
         min-height: 100vh;
@@ -204,7 +204,7 @@ a {
     .promo .copy {
         position: relative;
         padding: 6em 2em 2em 2em;
-        width: 40%;
+        width: 50%;
         height: 100%;
     }
 
@@ -213,8 +213,8 @@ a {
         top: 6em;
         bottom: 0;
         right: 0;
-        left: 40%;
-        background: url('/images/screenshot-bootstrap.png') no-repeat;
+        left: 50%;
+        background: url('/images/screenshot-dash.png') no-repeat;
         background-position: left 10px;
         background-size: cover;
     }
