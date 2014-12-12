@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="133" height="18" viewBox="0 0 133 18">
+
+    <rect width="100%" height="100%" fill="#474064" rx="4" />
+
+    <g transform="translate(8, 9)" font-family="DejaVu Sans, Verdana, Geneva, sans-serif" font-size="11" fill="#fff">
+        <text x="0" y="4.5" fill="#000" style="opacity: .25">latest documentation</text>
+        <text x="0" y="3.5">latest documentation</text>
+    </g>
+
+</svg>
