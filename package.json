@@ -11,7 +11,7 @@
         "express": "4.10.5",
         "request": "2.51.0",
         "mongodb": "1.4.23",
-        "doxdox": "0.0.17"
+        "doxdox": "0.0.18"
     },
     "repository": {
         "type": "git",
