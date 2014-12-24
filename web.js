@@ -65,24 +65,24 @@ server.get('/:username/:repo', function (req, res) {
             request.get({
                 url: rawgit_url + req.params.username + '/' + req.params.repo + '/master/package.json',
                 json: true
-            }, function (e, r, body) {
+            }, function (e, r, pkg) {
 
                 var config = {
-                    title: body.name,
-                    description: body.description,
+                    title: pkg.name,
+                    description: pkg.description,
                     layout: 'templates/bootstrap.hbs'
                 };
 
-                var file = body.main;
+                var file = pkg.main;
 
                 request.get({
-                    url: rawgit_url + req.params.username + '/' + req.params.repo + '/master/' + body.main
+                    url: rawgit_url + req.params.username + '/' + req.params.repo + '/master/' + pkg.main
                 }, function (e, r, body) {
 
                     doxdox.parseScripts([{
                         name: file,
                         contents: body
-                    }], config).then(function (content) {
+                    }], config, pkg).then(function (content) {
 
                         docs.content = encodeURIComponent(content);
 
