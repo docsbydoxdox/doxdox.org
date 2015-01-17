@@ -73,10 +73,10 @@ server.get('/:username/:repo', function (req, res) {
                     layout: 'templates/bootstrap.hbs'
                 };
 
-                var file = pkg.main;
+                var file = pkg.main || 'index.js';
 
                 request.get({
-                    url: rawgit_url + req.params.username + '/' + req.params.repo + '/master/' + pkg.main
+                    url: rawgit_url + req.params.username + '/' + req.params.repo + '/master/' + file
                 }, function (e, r, body) {
 
                     doxdox.parseScripts([{
