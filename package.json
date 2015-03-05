@@ -9,8 +9,8 @@
   "license": "MIT",
   "dependencies": {
     "doxdox": "0.1.4",
-    "express": "4.11.2",
-    "mongodb": "1.4.31",
+    "express": "4.12.2",
+    "mongodb": "1.4.33",
     "request": "2.53.0"
   },
   "repository": {
