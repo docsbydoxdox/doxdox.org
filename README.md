@@ -6,7 +6,7 @@
 
 ## Adding the doxdox Badge To Your Repo
 
-![](http://doxdox.org/images/badge.svg)
+![](http://doxdox.org/images/badge-flat.svg)
 
 ```markdown
 [![Latest Documentation](http://doxdox.org/images/badge.svg)](http://doxdox.org/<username>/<repo>)
