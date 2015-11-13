@@ -50,7 +50,7 @@ server.get('/', function (req, res, next) {
 
 server.use(express.static(__dirname + '/static'));
 
-server.get('/:username/:repo', function (req, res) {
+server.get('/:username/:repo/:branch?', function (req, res) {
 
     repos.findOne({ url: req.url }, function (err, docs) {
 
@@ -63,7 +63,7 @@ server.get('/:username/:repo', function (req, res) {
             };
 
             request.get({
-                url: rawgit_url + req.params.username + '/' + req.params.repo + '/master/package.json',
+                url: rawgit_url + req.params.username + '/' + req.params.repo + '/' + (req.params.branch || 'master') + '/package.json',
                 json: true
             }, function (e, r, pkg) {
 
@@ -76,7 +76,7 @@ server.get('/:username/:repo', function (req, res) {
                 var file = pkg.main || 'index.js';
 
                 request.get({
-                    url: rawgit_url + req.params.username + '/' + req.params.repo + '/master/' + file
+                    url: rawgit_url + req.params.username + '/' + req.params.repo + '/' + (req.params.branch || 'master') + '/' + file
                 }, function (e, r, body) {
 
                     doxdox.parseScripts([{
@@ -91,6 +91,10 @@ server.get('/:username/:repo', function (req, res) {
                             res.send(content);
 
                         });
+
+                    }).catch(function (err) {
+
+                        console.log(err);
 
                     });
 
