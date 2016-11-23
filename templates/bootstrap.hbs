@@ -4,26 +4,68 @@
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
 <title>{{title}}{{#if description}} &#8212; {{description}}{{/if}}</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
 <style>
 
-.back-to-top {
-    display: none;
-    position: fixed;
-    right: 1em;
-    bottom: 1em;
-    z-index: 999;
+.jumbotron {
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: #2B303E;
+    -webkit-font-smoothing: antialiased;
 }
 
-.back-to-top a {
+.jumbotron h1 {
+    font-size: 3.5rem;
+    line-height: 1;
+}
+
+.jumbotron h1,
+.jumbotron h1 a {
+    color: #eee;
+}
+
+.jumbotron small {
+    font-weight: 200;
+    color: #777;
+}
+
+.jumbotron p {
+    font-size: 1.5rem;
+    font-weight: 200;
+    line-height: 1.2;
+    color: #ccc;
+}
+
+.wrap {
+    padding: 2rem 1rem;
+}
+
+.menu {
+    padding: 0;
+}
+
+.menu li {
+    list-style: none;
+}
+
+.menu li ul {
+    padding: 0;
+}
+
+.menu li a {
     display: block;
-    padding: .5em .6em;
-    line-height: 1em;
-    border-radius: .25em;
-    background: #fff;
+    padding: .25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.back-to-top a svg {
-    vertical-align: middle;
+.menu .file {
+    color: #E54D89;
+}
+
+.menu .scope-private a {
+    color: #8BAAC6;
 }
 
 .permalink {
@@ -31,180 +73,44 @@
     margin-left: -.75em;
     font-weight: normal;
     color: #eee;
-}
-
-.permalink:hover {
     text-decoration: none;
 }
 
-.method h2 {
-    line-height: 1.3em;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
-.permalink:hover,
-.doxdox .menu .file {
+.permalink:hover {
     color: #E54D89;
 }
 
-pre .hljs {
-    padding: 0;
-    background: none;
+.back-to-top {
+    display: none;
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    padding: .5rem .6rem;
+    line-height: 1;
+    background: #fff;
+    z-index: 999;
 }
 
-.doxdox .wrap {
-    padding: 0 1em;
-}
-
-.doxdox .jumbotron p,
-.doxdox .label-default {
-    -webkit-font-smoothing: antialiased;
-}
-
-.doxdox .jumbotron {
-    margin-bottom: 0;
-    background-color: #2B303E;
-}
-
-.doxdox .jumbotron h1,
-.doxdox .jumbotron h1 a {
-    color: #eee;
-}
-
-.doxdox .jumbotron p {
-    color: #ccc;
-}
-
-.doxdox .menu {
-    margin: 1.5em 0 0 0;
-    padding: 0;
-}
-
-.doxdox .menu li {
-    list-style: none;
-}
-
-.doxdox .menu li ul {
-    padding: 0;
-}
-
-.doxdox .menu li a {
+.back-to-top.visible {
     display: block;
-    padding: .25em;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-.doxdox .menu .scope-private a {
-    color: #8BAAC6;
+.back-to-top svg {
+    vertical-align: middle;
 }
 
-.doxdox .bs-footer {
-    margin: 3em auto;
+.bs-footer {
+    margin: 3rem auto;
     color: #777;
     text-align: center;
 }
 
 </style>
-<script>
-
-(function (w, d, f) {
-
-    'use strict';
-
-    var protocol = w.location.protocol === 'file:' ? 'http:' : w.location.protocol,
-        resource = [
-            '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
-            '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/github.min.css',
-            '//code.jquery.com/jquery-2.2.2.min.js',
-            '//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js'
-        ];
-
-    function loadResource(url) {
-
-        var tag;
-
-        if (url.match(/\.js$/)) {
-
-            tag = d.createElement('script');
-            tag.setAttribute('src', protocol + url);
-
-        } else if (url.match(/\.css$/)) {
-
-            tag = d.createElement('link');
-            tag.setAttribute('rel', 'stylesheet');
-            tag.setAttribute('href', protocol + url);
-
-        }
-
-        tag.addEventListener('load', function () {
-
-            if (resource.length) {
-
-                loadResource(resource.shift());
-
-            } else {
-
-                if ($.isReady) {
-
-                    f();
-
-                } else {
-
-                    $(document).ready(f);
-
-                }
-
-            }
-
-        });
-
-        d.head.appendChild(tag);
-
-    }
-
-    loadResource(resource.shift());
-
-}(window, document, function () {
-
-    'use strict';
-
-    var headerHeight = $('.jumbotron').outerHeight(true),
-        $backToTop = $('.back-to-top');
-
-    function handleScrollEvent() {
-
-        if (window.scrollY > headerHeight && $backToTop.not(':visible')) {
-
-            $backToTop.fadeIn();
-
-        } else if (window.scrollY < headerHeight && $backToTop.is(':visible')) {
-
-            $backToTop.fadeOut();
-
-        }
-
-    }
-
-    $('pre code:not(.hljs)').each(function () {
-        hljs.highlightBlock(this);
-    });
-
-    $(window).on('scroll', handleScrollEvent);
-
-    handleScrollEvent();
-
-}));
-
-</script>
 </head>
 
-<body class="doxdox">
+<body>
 
-<div class="back-to-top">
-    <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="13px" height="14px" viewBox="0 0 13 14"><path d="M7.18761156,13 L7.18761156,5.49249703 L10.4587853,5.49249703 L5.09931763,0.113558129 L-0.26015,5.49249703 L3.01102371,5.49249703 L3.01102371,13 L7.18761156,13 Z" fill="#428bca"></path></svg> Back to Top</a>
-</div>
+<a href="#" class="back-to-top"><svg xmlns="http://www.w3.org/2000/svg" width="13px" height="14px" viewBox="0 0 13 14"><path d="M7.18761156,13 L7.18761156,5.49249703 L10.4587853,5.49249703 L5.09931763,0.113558129 L-0.26015,5.49249703 L3.01102371,5.49249703 L3.01102371,13 L7.18761156,13 Z" fill="#428bca"></path></svg> Back to Top</a>
 
 <div class="jumbotron">
 
@@ -294,7 +200,7 @@ pre .hljs {
                                         <code>{{.}}</code>
                                     {{/each}}
                                     {{#if isOptional}}
-                                        <span class="label label-default">Optional</span>
+                                        <span class="tag tag-default">Optional</span>
                                     {{/if}}
                                 </p>
 
@@ -401,6 +307,42 @@ pre .hljs {
 
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script>
+
+(function () {
+
+    'use strict';
+
+    var headerHeight = $('.jumbotron').outerHeight(true),
+        $backToTop = $('.back-to-top');
+
+    function handleScrollEvent() {
+
+        if (window.scrollY > headerHeight && $backToTop.not('.visible')) {
+
+            $backToTop.addClass('visible');
+
+        } else if (window.scrollY < headerHeight && $backToTop.is('.visible')) {
+
+            $backToTop.removeClass('visible');
+
+        }
+
+    }
+
+    $('pre code:not(.hljs)').each(function () {
+        hljs.highlightBlock(this);
+    });
+
+    $(window).on('scroll', handleScrollEvent);
+
+    handleScrollEvent();
+
+})();
+
+</script>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
