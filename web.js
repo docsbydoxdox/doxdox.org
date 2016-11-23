@@ -2,6 +2,7 @@ var url = require('url');
 
 var request = require('request');
 var doxdox = require('doxdox');
+var loaders = require('doxdox/lib/loaders');
 
 var express = require('express');
 var server = express();
@@ -70,6 +71,8 @@ server.get('/:username/:repo/:branch?', function (req, res) {
                 var config = {
                     title: pkg.name,
                     description: pkg.description,
+                    pkg: pkg,
+                    parser: 'dox',
                     layout: 'templates/bootstrap.hbs'
                 };
 
@@ -79,24 +82,27 @@ server.get('/:username/:repo/:branch?', function (req, res) {
                     url: rawgit_url + req.params.username + '/' + req.params.repo + '/' + (req.params.branch || 'master') + '/' + file
                 }, function (e, r, body) {
 
-                    doxdox.parseScripts([{
-                        name: file,
-                        contents: body
-                    }], config, pkg).then(function (content) {
+                    loaders.loadParser(config).then(parser =>
+                        loaders.loadPlugin(config).then(plugin => {
 
-                        docs.content = encodeURIComponent(content);
+                            plugin(Object.assign({
+                                files: [{
+                                    'methods': parser(body, file),
+                                    'name': file
+                                }]
+                            }, config)).then(content => {
 
-                        repos.insert(docs, function () {
+                                docs.content = encodeURIComponent(content);
 
-                            res.send(content);
+                                repos.insert(docs, function () {
 
-                        });
+                                    res.send(content);
 
-                    }).catch(function (err) {
+                                });
 
-                        console.log(err);
+                            });
 
-                    });
+                        }));
 
                 });
 
