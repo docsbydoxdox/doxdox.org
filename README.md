@@ -9,5 +9,9 @@
 ![Latest Documentation](http://doxdox.org/images/badge-flat.svg)
 
 ```markdown
+[![Latest Documentation](http://doxdox.org/images/badge-flat.svg)](http://doxdox.org/)
+```
+
+```markdown
 [![Latest Documentation](http://doxdox.org/images/badge-flat.svg)](http://doxdox.org/<username>/<repo>)
 ```
