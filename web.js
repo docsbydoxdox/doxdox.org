@@ -10,7 +10,7 @@ var server = express();
 var MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 
-var mongoURI = process.env.MONGOHQ_URL || 'mongodb://localhost:27017/doxdox';
+var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/doxdox';
 
 var repos;
 
