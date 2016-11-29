@@ -23,16 +23,13 @@ MongoClient.connect(mongoURI, (err, db) => {
 
 server.get('/', (req, res, next) => {
 
-    let redirect = null;
-    let repo = null;
-
     if (req.headers.referer) {
 
-        redirect = url.parse(req.headers.referer);
+        const redirect = url.parse(req.headers.referer);
 
         if (redirect.host === 'github.com') {
 
-            repo = redirect.path.match(/^\/.+?\/[^/]+\/?/);
+            const repo = redirect.path.match(/^\/.+?\/[^/]+\/?/);
 
             if (repo) {
 
