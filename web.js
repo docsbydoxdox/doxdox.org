@@ -1,31 +1,30 @@
-var url = require('url');
+const path = require('path');
+const url = require('url');
 
-var request = require('request');
-var doxdox = require('doxdox');
-var loaders = require('doxdox/lib/loaders');
+const request = require('request');
+const loaders = require('doxdox/lib/loaders');
 
-var express = require('express');
-var server = express();
+const express = require('express');
+const server = express();
 
-var MongoClient = require('mongodb').MongoClient;
-var ObjectID = require('mongodb').ObjectID;
+const MongoClient = require('mongodb').MongoClient;
 
-var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/doxdox';
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/doxdox';
 
-var repos;
+const RAWGIT_URL = 'https://raw.githubusercontent.com/';
 
-MongoClient.connect(mongoURI, function(err, db) {
+let repos = null;
+
+MongoClient.connect(mongoURI, (err, db) => {
 
     repos = db.collection('repos');
 
 });
 
-var rawgit_url = 'https://raw.githubusercontent.com/';
+server.get('/', (req, res, next) => {
 
-server.get('/', function (req, res, next) {
-
-    var redirect,
-        repo;
+    let redirect = null;
+    let repo = null;
 
     if (req.headers.referer) {
 
@@ -33,7 +32,7 @@ server.get('/', function (req, res, next) {
 
         if (redirect.host === 'github.com') {
 
-            repo = redirect.path.match(/^\/.+?\/[^\/]+\/?/);
+            repo = redirect.path.match(/^\/.+?\/[^/]+\/?/);
 
             if (repo) {
 
@@ -49,44 +48,48 @@ server.get('/', function (req, res, next) {
 
 });
 
-server.use(express.static(__dirname + '/static'));
+server.use(express.static(path.join(__dirname, '/static')));
 
-server.get('/:username/:repo/:branch?', function (req, res) {
+server.get('/:username/:repo/:branch?', (req, res) => {
 
-    repos.findOne({ url: req.url }, function (err, docs) {
+    repos.findOne({'url': req.url}, (err, docs) => {
 
-        if (!docs) {
+        if (docs) {
+
+            res.send(decodeURIComponent(docs.content));
+
+        } else {
 
             docs = {
-                url: req.url,
-                content: '',
-                date: new Date()
+                'content': '',
+                'date': new Date(),
+                'url': req.url
             };
 
             request.get({
-                url: rawgit_url + req.params.username + '/' + req.params.repo + '/' + (req.params.branch || 'master') + '/package.json',
-                json: true
-            }, function (e, r, pkg) {
+                'json': true,
+                'url': `${RAWGIT_URL}${req.params.username}/${req.params.repo}/${(req.params.branch || 'master')}/package.json`
+            }, (e, r, pkg) => {
 
-                var config = {
-                    title: pkg.name,
-                    description: pkg.description,
-                    pkg: pkg,
-                    parser: 'dox',
-                    layout: 'templates/bootstrap.hbs'
+                const config = {
+                    'description': pkg.description,
+                    'layout': 'templates/bootstrap.hbs',
+                    'parser': 'dox',
+                    pkg,
+                    'title': pkg.name
                 };
 
-                var file = pkg.main || 'index.js';
+                const file = pkg.main || 'index.js';
 
                 request.get({
-                    url: rawgit_url + req.params.username + '/' + req.params.repo + '/' + (req.params.branch || 'master') + '/' + file
-                }, function (e, r, body) {
+                    'url': `${RAWGIT_URL}${req.params.username}/${req.params.repo}/${(req.params.branch || 'master')}/${file}`
+                }, (e, r, body) => {
 
                     loaders.loadParser(config).then(parser =>
                         loaders.loadPlugin(config).then(plugin => {
 
                             plugin(Object.assign({
-                                files: [{
+                                'files': [{
                                     'methods': parser(body, file),
                                     'name': file
                                 }]
@@ -94,7 +97,7 @@ server.get('/:username/:repo/:branch?', function (req, res) {
 
                                 docs.content = encodeURIComponent(content);
 
-                                repos.insert(docs, function () {
+                                repos.insert(docs, () => {
 
                                     res.send(content);
 
@@ -107,10 +110,6 @@ server.get('/:username/:repo/:branch?', function (req, res) {
                 });
 
             });
-
-        } else {
-
-            res.send(decodeURIComponent(docs.content));
 
         }
 

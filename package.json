@@ -7,6 +7,10 @@
   },
   "main": "web.js",
   "license": "MIT",
+  "devDependencies": {
+    "@neogeek/eslint-config-standards": "1.9.0",
+    "eslint": "3.11.1"
+},
   "dependencies": {
     "doxdox": "github:neogeek/doxdox",
     "express": "4.14.0",
