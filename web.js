@@ -1,6 +1,8 @@
 const path = require('path');
 const url = require('url');
 
+const JSZip = require('jszip');
+
 const request = require('request');
 const loaders = require('doxdox/lib/loaders');
 
@@ -10,8 +12,6 @@ const server = express();
 const MongoClient = require('mongodb').MongoClient;
 
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/doxdox';
-
-const RAWGIT_URL = 'https://raw.githubusercontent.com/';
 
 let repos = null;
 
@@ -49,6 +49,12 @@ server.use(express.static(path.join(__dirname, '/static')));
 
 server.get('/:username/:repo/:branch?', (req, res) => {
 
+    if (!req.params.branch) {
+
+        req.params.branch = 'master';
+
+    }
+
     repos.findOne({'url': req.url}, (err, docs) => {
 
         if (docs) {
@@ -64,32 +70,62 @@ server.get('/:username/:repo/:branch?', (req, res) => {
             };
 
             request.get({
-                'json': true,
-                'url': `${RAWGIT_URL}${req.params.username}/${req.params.repo}/${(req.params.branch || 'master')}/package.json`
-            }, (e, r, pkg) => {
+                'encoding': null,
+                'url': `https://github.com/${req.params.username}/${req.params.repo}/archive/${req.params.branch}.zip`
+            }, (err, response, body) => {
 
                 const config = {
-                    'description': pkg.description,
                     'layout': 'templates/bootstrap.hbs',
-                    'parser': 'dox',
-                    pkg,
-                    'title': pkg.name
+                    'parser': 'dox'
                 };
 
-                const file = pkg.main || 'index.js';
+                const files = [];
 
-                request.get({
-                    'url': `${RAWGIT_URL}${req.params.username}/${req.params.repo}/${(req.params.branch || 'master')}/${file}`
-                }, (e, r, body) => {
+                loaders.loadParser(config).then(parser =>
+                    loaders.loadPlugin(config).then(plugin => {
 
-                    loaders.loadParser(config).then(parser =>
-                        loaders.loadPlugin(config).then(plugin => {
+                        JSZip.loadAsync(body).then(zip => {
+
+                            let sequence = Promise.resolve();
+
+                            Object.values(zip.files)
+                                .filter(file => file.name.match(/\.js$/) &&
+                                    !file.name.match(/(test\/|tests\/|Gruntfile|Gulpfile|\.min)/))
+                                .forEach(file => {
+
+                                    sequence = sequence
+                                        .then(() => zip.file(file.name).async('string'))
+                                        .then(contents => files.push({
+                                            'methods': parser(contents, file.name),
+                                            'name': file.name.replace(/^[^/]+\//, '')
+                                        }));
+
+                                });
+
+                            Object.values(zip.files)
+                                .filter(file => file.name.match(/package\.json$/))
+                                .forEach(file => {
+
+                                    sequence = sequence
+                                        .then(() => zip.file(file.name).async('string'))
+                                        .then(contents => JSON.parse(contents))
+                                        .then(pkg => {
+
+                                            config.title = pkg.name;
+                                            config.description = pkg.description;
+                                            config.pkg = pkg;
+
+                                        });
+
+                                });
+
+                            return sequence;
+
+                        })
+                        .then(() => {
 
                             plugin(Object.assign({
-                                'files': [{
-                                    'methods': parser(body, file),
-                                    'name': file
-                                }]
+                                files
                             }, config)).then(content => {
 
                                 docs.content = encodeURIComponent(content);
@@ -102,9 +138,9 @@ server.get('/:username/:repo/:branch?', (req, res) => {
 
                             });
 
-                        }));
+                        });
 
-                });
+                    }));
 
             });
 
