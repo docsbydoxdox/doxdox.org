@@ -1,15 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="133" height="18" viewBox="0 0 133 18">
-
-    <linearGradient id="gradient-purple" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" style="stop-color:rgb(89, 84, 113); stop-opacity:1" />
-        <stop offset="100%" style="stop-color:rgb(50, 42, 86); stop-opacity:1" />
-    </linearGradient>
-
-    <rect width="100%" height="100%" fill="url(#gradient-purple)" rx="4" />
-
-    <g transform="translate(8, 9)" font-family="DejaVu Sans, Verdana, Geneva, sans-serif" font-size="11" fill="#fff">
-        <text x="0" y="4.5" fill="#000" style="opacity: .25">latest documentation</text>
-        <text x="0" y="3.5">latest documentation</text>
-    </g>
-
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="142" height="18"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#fff" stop-opacity=".7"/><stop offset=".1" stop-color="#aaa" stop-opacity=".1"/><stop offset=".9" stop-opacity=".3"/><stop offset="1" stop-opacity=".5"/></linearGradient><mask id="a"><rect width="142" height="18" rx="4" fill="#fff"/></mask><g mask="url(#a)"><path fill="#555" d="M0 0h49v18H0z"/><path fill="#F25995" d="M49 0h93v18H49z"/><path fill="url(#b)" d="M0 0h142v18H0z"/></g><g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11"><text x="25.5" y="14" fill="#010101" fill-opacity=".3">doxdox</text><text x="25.5" y="13">doxdox</text><text x="94.5" y="14" fill="#010101" fill-opacity=".3">documentation</text><text x="94.5" y="13">documentation</text></g></svg>
