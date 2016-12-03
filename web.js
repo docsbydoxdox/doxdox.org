@@ -19,6 +19,20 @@ MongoClient.connect(mongoURI, (err, db) => {
 
     repos = db.collection('repos');
 
+    repos.ensureIndex({
+        'url': 1
+    }, {
+        'expireAfterSeconds': 1800
+    }, err => {
+
+        if (err) {
+
+            throw new Error(err);
+
+        }
+
+    });
+
 });
 
 server.get('/', (req, res, next) => {
