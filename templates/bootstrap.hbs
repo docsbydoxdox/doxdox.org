@@ -64,13 +64,45 @@
     color: #E54D89;
 }
 
+.menu .file + ul {
+    margin: 0 0 1rem 0;
+}
+
 .menu .scope-private a {
     color: #8BAAC6;
 }
 
+.method {
+    margin: 0 0 4rem 0;
+}
+
+.method .method-name {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.method section {
+    margin: 2rem 0;
+}
+
+.method h3 {
+    margin: 0 0 1rem 0;
+}
+
+.method .table {
+    margin: 0;
+}
+
+.method .table p {
+    margin: 0;
+}
+
 .permalink {
     position: absolute;
-    margin-left: -.75em;
+    margin-left: -1em;
     font-weight: normal;
     color: #eee;
     text-decoration: none;
@@ -176,15 +208,18 @@
                     <div class="method scope-{{#if isPrivate}}private{{else}}public{{/if}}">
 
                         <h2 id="{{uid}}">
-                            <a href="#{{uid}}" class="permalink">#</a> {{name}}({{params}})
+                            <a href="#{{uid}}" class="permalink">#</a>
+                            <span class="method-name" title="{{name}}({{params}})">{{name}}({{params}})</span>
                             {{#if isPrivate}}
                             <small>private {{type}}</small>
                             {{/if}}
                         </h2>
 
-                        {{{markdown description}}}
+                        <div class="description lead">
 
-                        {{{markdown body}}}
+                            {{{markdown description}}}
+
+                        </div>
 
                         {{#if tags.param.length}}
 
@@ -192,21 +227,39 @@
 
                             <h3>Parameters</h3>
 
-                            {{#each tags.param}}
+                            <div class="table-responsive">
+                                <table class="table">
 
-                                <p>
-                                    <b>{{name}}</b>
-                                    {{#each types}}
-                                        <code>{{.}}</code>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    {{#each tags.param}}
+                                    <tr>
+                                        <td>{{name}}</td>
+                                        <td>
+                                            {{#each types}}
+                                            <code>{{.}}</code>
+                                            {{/each}}
+                                        </td>
+                                        <td>{{{markdown description}}}</td>
+                                        <td>
+                                            {{#if isOptional}}
+                                                <span class="tag tag-default">Optional</span>
+                                            {{/if}}
+                                        </td>
+                                    </tr>
                                     {{/each}}
-                                    {{#if isOptional}}
-                                        <span class="tag tag-default">Optional</span>
-                                    {{/if}}
-                                </p>
+                                    </tbody>
 
-                                {{{markdown description}}}
-
-                            {{/each}}
+                                </table>
+                            </div>
 
                         </section>
 
@@ -218,21 +271,39 @@
 
                             <h3>Properties</h3>
 
-                            {{#each tags.property}}
+                            <div class="table-responsive">
+                                <table class="table">
 
-                                <p>
-                                    <b>{{name}}</b>
-                                    {{#each types}}
-                                        <code>{{.}}</code>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    {{#each tags.property}}
+                                    <tr>
+                                        <td>{{name}}</td>
+                                        <td>
+                                            {{#each types}}
+                                            <code>{{.}}</code>
+                                            {{/each}}
+                                        </td>
+                                        <td>{{{markdown description}}}</td>
+                                        <td>
+                                            {{#if isOptional}}
+                                                <span class="tag tag-default">Optional</span>
+                                            {{/if}}
+                                        </td>
+                                    </tr>
                                     {{/each}}
-                                    {{#if isOptional}}
-                                        <span class="label label-default">Optional</span>
-                                    {{/if}}
-                                </p>
+                                    </tbody>
 
-                                {{{markdown description}}}
-
-                            {{/each}}
+                                </table>
+                            </div>
 
                         </section>
 
@@ -266,9 +337,6 @@
                                         {{#each types}}
                                             <code>{{.}}</code>
                                         {{/each}}
-                                        {{#if isOptional}}
-                                            <span class="label label-default">Optional</span>
-                                        {{/if}}
                                     </p>
 
                                     {{{markdown description}}}
