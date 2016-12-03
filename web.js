@@ -125,7 +125,7 @@ server.get('/:username/:repo/:branch?', (req, res) => {
                         .then(() => {
 
                             plugin(Object.assign({
-                                files
+                                'files': files.filter(file => file.methods.length)
                             }, config)).then(content => {
 
                                 docs.content = encodeURIComponent(content);
