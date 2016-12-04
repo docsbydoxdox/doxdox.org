@@ -84,6 +84,10 @@
     text-overflow: ellipsis;
 }
 
+.method .method-name + .scope-private {
+    color: #AAAAAA;
+}
+
 .method section {
     margin: 2rem 0;
 }
@@ -92,10 +96,7 @@
     margin: 0 0 1rem 0;
 }
 
-.method .table {
-    margin: 0;
-}
-
+.method .table,
 .method .table p,
 .method .table ol,
 .method .table ul {
@@ -213,7 +214,7 @@
                             <a href="#{{uid}}" class="permalink">#</a>
                             <span class="method-name" title="{{name}}({{params}})">{{name}}({{params}})</span>
                             {{#if isPrivate}}
-                            <small>private {{type}}</small>
+                            <small class="scope-private">private {{type}}</small>
                             {{/if}}
                         </h2>
 
