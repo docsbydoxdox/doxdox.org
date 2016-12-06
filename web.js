@@ -139,7 +139,15 @@ server.get('/:username/:repo/:branch?', (req, res) => {
                         .then(() => {
 
                             plugin(Object.assign({
-                                'files': files.filter(file => file.methods.length)
+                                'files': files.filter(file => file.methods.length),
+                                'timestamp': new Intl.DateTimeFormat('en-US', {
+                                    'day': 'numeric',
+                                    'hour': 'numeric',
+                                    'minute': 'numeric',
+                                    'month': 'long',
+                                    'weekday': 'long',
+                                    'year': 'numeric'
+                                }).format(new Date())
                             }, config)).then(content => {
 
                                 docs.content = encodeURIComponent(content);
