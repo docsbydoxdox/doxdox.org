@@ -89,7 +89,7 @@ server.get('/:username/:repo/:branch?', (req, res) => {
 
                 if (err || response.statusCode !== 200) {
 
-                    res.send(response.statusCode);
+                    res.sendStatus(response.statusCode);
 
                 } else {
 
