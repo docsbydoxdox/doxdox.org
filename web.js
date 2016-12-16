@@ -1,10 +1,7 @@
 const path = require('path');
 const url = require('url');
 
-const JSZip = require('jszip');
-
 const request = require('request');
-const loaders = require('doxdox/lib/loaders');
 
 const express = require('express');
 const server = express();
@@ -12,6 +9,8 @@ const server = express();
 const MongoClient = require('mongodb').MongoClient;
 
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/doxdox';
+
+const renderer = require('./src/utils/doxdox').renderer;
 
 let repos = null;
 
@@ -88,81 +87,25 @@ server.get('/:username/:repo/:branch?', (req, res) => {
                 'url': `https://github.com/${req.params.username}/${req.params.repo}/archive/${req.params.branch}.zip`
             }, (err, response, body) => {
 
-                const config = {
-                    'layout': 'templates/bootstrap.hbs',
-                    'parser': 'dox'
-                };
+                if (err || response.statusCode !== 200) {
 
-                const files = [];
+                    res.send(response.statusCode);
 
-                loaders.loadParser(config).then(parser =>
-                    loaders.loadPlugin(config).then(plugin => {
+                } else {
 
-                        JSZip.loadAsync(body).then(zip => {
+                    renderer(body).then(content => {
 
-                            let sequence = Promise.resolve();
+                        docs.content = encodeURIComponent(content);
 
-                            Object.values(zip.files)
-                                .filter(file => file.name.match(/\.js$/) &&
-                                    !file.name.match(/(test\/|tests\/|Gruntfile|Gulpfile|\.min)/))
-                                .forEach(file => {
+                        repos.insert(docs, () => {
 
-                                    sequence = sequence
-                                        .then(() => zip.file(file.name).async('string'))
-                                        .then(contents => files.push({
-                                            'methods': parser(contents, file.name),
-                                            'name': file.name.replace(/^[^/]+\//, '')
-                                        }));
-
-                                });
-
-                            Object.values(zip.files)
-                                .filter(file => file.name.match(/package\.json$/))
-                                .forEach(file => {
-
-                                    sequence = sequence
-                                        .then(() => zip.file(file.name).async('string'))
-                                        .then(contents => JSON.parse(contents))
-                                        .then(pkg => {
-
-                                            config.title = pkg.name;
-                                            config.description = pkg.description;
-                                            config.pkg = pkg;
-
-                                        });
-
-                                });
-
-                            return sequence;
-
-                        })
-                        .then(() => {
-
-                            plugin(Object.assign({
-                                'files': files.filter(file => file.methods.length),
-                                'timestamp': new Intl.DateTimeFormat('en-US', {
-                                    'day': 'numeric',
-                                    'hour': 'numeric',
-                                    'minute': 'numeric',
-                                    'month': 'long',
-                                    'weekday': 'long',
-                                    'year': 'numeric'
-                                }).format(new Date())
-                            }, config)).then(content => {
-
-                                docs.content = encodeURIComponent(content);
-
-                                repos.insert(docs, () => {
-
-                                    res.send(content);
-
-                                });
-
-                            });
+                            res.send(content);
 
                         });
 
-                    }));
+                    });
+
+                }
 
             });
 
