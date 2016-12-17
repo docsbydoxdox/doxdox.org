@@ -8,14 +8,14 @@
   "main": "web.js",
   "license": "MIT",
   "devDependencies": {
-    "@neogeek/eslint-config-standards": "1.9.0",
-    "eslint": "3.11.1"
+    "@neogeek/eslint-config-standards": "1.10.0",
+    "eslint": "3.12.2"
   },
   "dependencies": {
-    "doxdox": "github:neogeek/doxdox",
+    "doxdox": "2.0.1",
     "express": "4.14.0",
     "jszip": "3.1.3",
-    "mongodb": "2.2.12",
+    "mongodb": "2.2.16",
     "request": "2.79.0"
   },
   "scripts": {
