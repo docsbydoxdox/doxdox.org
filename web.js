@@ -19,7 +19,7 @@ MongoClient.connect(mongoURI, (err, db) => {
     repos = db.collection('repos');
 
     repos.ensureIndex({
-        'url': 1
+        'createdAt': 1
     }, {
         'expireAfterSeconds': 1800
     }, err => {
@@ -78,7 +78,7 @@ server.get('/:username/:repo/:branch?', (req, res) => {
 
             docs = {
                 'content': '',
-                'date': new Date(),
+                'createdAt': new Date(),
                 'url': req.url
             };
 
