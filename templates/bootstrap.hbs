@@ -3,9 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
-<title>{{title}}{{#if description}} &#8212; {{description}}{{/if}}</title>
+<title>{{title}}{{#if pkg.version}} {{pkg.version}}{{/if}}{{#if description}} &#8212; {{description}}{{/if}} &#8212; doxdox.org</title>
+{{#if description}}
+<meta name="description" content="{{description}}">
+{{/if}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
 <style>
 
 .jumbotron {
@@ -39,6 +42,11 @@
 
 .wrap {
     padding: 2rem 1rem;
+}
+
+.search {
+    margin: 0 0 1rem 0;
+    width: 90%;
 }
 
 .menu {
@@ -174,6 +182,8 @@
 
             <div class="col-md-3 hidden-sm hidden-xs">
 
+                <input type="text" class="form-control search" id="search-methods" placeholder="Search..." autocomplete="off">
+
                 <ul class="menu">
 
                     {{#each files}}
@@ -184,7 +194,7 @@
 
                         {{#each methods}}
 
-                        <li class="scope-{{#if isPrivate}}private{{else}}public{{/if}}">
+                        <li class="method-link scope-{{#if isPrivate}}private{{else}}public{{/if}}">
                             <a href="#{{uid}}" title="{{name}}">{{name}}</a>
                         </li>
 
@@ -380,7 +390,7 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
 <script>
 
 (function () {
@@ -406,6 +416,30 @@
 
     $('pre code:not(.hljs)').each(function () {
         hljs.highlightBlock(this);
+    });
+
+    var $methodLinks = $('.method-link');
+
+    $('#search-methods').on('keyup', function (e) {
+
+        var query = new RegExp(e.target.value.replace(' ', '|'), 'ig');
+
+        $methodLinks.each(function () {
+
+            var $this = $(this);
+
+            if (!$this.text().match(query)) {
+
+                $this.hide();
+
+            } else {
+
+                $this.show();
+
+            }
+
+        });
+
     });
 
     $(window).on('scroll', handleScrollEvent);
