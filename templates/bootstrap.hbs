@@ -7,6 +7,21 @@
 {{#if description}}
 <meta name="description" content="{{description}}">
 {{/if}}
+
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="doxdox.org"/>
+<meta property="og:title" content="{{title}}"/>
+{{#if description}}
+<meta property="og:description" content="{{description}}"/>
+{{/if}}
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="@docsbydoxdox"/>
+<meta name="twitter:title" content="{{title}}"/>
+{{#if description}}
+<meta name="twitter:description" content="{{description}}"/>
+{{/if}}
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
 <style>
