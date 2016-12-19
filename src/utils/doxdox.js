@@ -2,6 +2,9 @@ const JSZip = require('jszip');
 
 const loaders = require('doxdox/lib/loaders');
 
+const FILE_PATTERN_MATCH = /\.js$|^package\.json$/;
+const FILE_PATTERN_IGNORE = /(^test(s)?\/|(Grunt|Gulp)file\.js|\.min)/;
+
 const renderer = body => {
 
     const config = {
@@ -18,31 +21,37 @@ const renderer = body => {
                 let sequence = Promise.resolve();
 
                 Object.values(zip.files)
-                    .filter(file => file.name.match(/\.js$/) &&
-                        !file.name.match(/(test\/|tests\/|Gruntfile|Gulpfile|\.min)/))
+                    .map(file => {
+
+                        file.originalName = file.name.replace(/^[^/]+\//, '');
+
+                        return file;
+
+                    })
+                    .filter(file => file.originalName.match(FILE_PATTERN_MATCH) &&
+                        !file.originalName.match(FILE_PATTERN_IGNORE))
                     .forEach(file => {
 
                         sequence = sequence
                             .then(() => zip.file(file.name).async('string'))
-                            .then(contents => files.push({
-                                'methods': parser(contents, file.name),
-                                'name': file.name.replace(/^[^/]+\//, '')
-                            }));
+                            .then(contents => {
 
-                    });
+                                if (file.originalName === 'package.json') {
 
-                Object.values(zip.files)
-                    .filter(file => file.name.match(/package\.json$/))
-                    .forEach(file => {
+                                    const pkg = JSON.parse(contents);
 
-                        sequence = sequence
-                            .then(() => zip.file(file.name).async('string'))
-                            .then(contents => JSON.parse(contents))
-                            .then(pkg => {
+                                    config.title = pkg.name;
+                                    config.description = pkg.description;
+                                    config.pkg = pkg;
 
-                                config.title = pkg.name;
-                                config.description = pkg.description;
-                                config.pkg = pkg;
+                                } else {
+
+                                    files.push({
+                                        'methods': parser(contents, file.originalName),
+                                        'name': file.originalName
+                                    });
+
+                                }
 
                             });
 
