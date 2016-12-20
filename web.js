@@ -3,6 +3,7 @@ const url = require('url');
 
 const moment = require('moment');
 
+const raspar = require('raspar');
 const request = require('request');
 
 const express = require('express');
@@ -118,6 +119,27 @@ server.get('/:username/:repo/:branch?', (req, res) => {
             });
 
         }
+
+    });
+
+});
+
+server.get('/api/:username/:repo/releases', (req, res) => {
+
+    raspar.fetch(`https://api.github.com/repos/${req.params.username}/${req.params.repo}/releases`, {
+        'requestOptions': {
+            'headers': {
+                'Authorization': `token ${process.env.GITHUB_API_KEY}`,
+                'User-Agent': 'doxdox.org'
+            }
+        }
+    }).then(data => {
+
+        const releases = JSON.parse(data.body)
+            .filter(release => !release.draft)
+            .map(release => release.name);
+
+        res.json(releases);
 
     });
 
