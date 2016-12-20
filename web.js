@@ -78,7 +78,7 @@ server.get('/:username/:repo/:branch?', (req, res) => {
 
     }
 
-    repos.findOne({'url': req.url}, (err, docs) => {
+    repos.findOne({'url': req.path}, (err, docs) => {
 
         if (docs && moment(docs.createdAt).add(CACHE_TIMEOUT_IN_MINUTES, 'minutes')
             .isAfter(new Date())) {
@@ -104,7 +104,7 @@ server.get('/:username/:repo/:branch?', (req, res) => {
                             '_id': docs ? docs._id : null,
                             'content': encodeURIComponent(content),
                             'createdAt': new Date(),
-                            'url': req.url
+                            'url': req.path
                         }, () => {
 
                             res.send(content);
