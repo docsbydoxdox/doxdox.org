@@ -1,6 +1,8 @@
 const path = require('path');
 const url = require('url');
 
+const moment = require('moment');
+
 const request = require('request');
 
 const express = require('express');
@@ -12,25 +14,13 @@ const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/doxdox';
 
 const renderer = require('./src/utils/doxdox').renderer;
 
+const CACHE_TIMEOUT_IN_MINUTES = 30;
+
 let repos = null;
 
 MongoClient.connect(mongoURI, (err, db) => {
 
     repos = db.collection('repos');
-
-    repos.ensureIndex({
-        'createdAt': 1
-    }, {
-        'expireAfterSeconds': 1800
-    }, err => {
-
-        if (err) {
-
-            throw new Error(err);
-
-        }
-
-    });
 
 });
 
@@ -90,17 +80,12 @@ server.get('/:username/:repo/:branch?', (req, res) => {
 
     repos.findOne({'url': req.url}, (err, docs) => {
 
-        if (docs) {
+        if (docs && moment(docs.createdAt).add(CACHE_TIMEOUT_IN_MINUTES, 'minutes')
+            .isAfter(new Date())) {
 
             res.send(decodeURIComponent(docs.content));
 
         } else {
-
-            docs = {
-                'content': '',
-                'createdAt': new Date(),
-                'url': req.url
-            };
 
             request.get({
                 'encoding': null,
@@ -115,9 +100,12 @@ server.get('/:username/:repo/:branch?', (req, res) => {
 
                     renderer(body).then(content => {
 
-                        docs.content = encodeURIComponent(content);
-
-                        repos.insert(docs, () => {
+                        repos.save({
+                            '_id': docs ? docs._id : null,
+                            'content': encodeURIComponent(content),
+                            'createdAt': new Date(),
+                            'url': req.url
+                        }, () => {
 
                             res.send(content);
 
