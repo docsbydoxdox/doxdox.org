@@ -60,6 +60,26 @@ server.get('/', (req, res, next) => {
 
 server.use(express.static(path.join(__dirname, '/static')));
 
+server.get('/sitemap.txt', (req, res) => {
+
+    repos.find({}, {'url': 1}, (err, docs) => {
+
+        docs.toArray().then(repos => {
+
+            res.type('text');
+
+            res.send(
+                repos.map(repo => `${req.protocol}://${req.headers.host}${repo.url}`)
+                    .sort()
+                    .join('\n')
+            );
+
+        });
+
+    });
+
+});
+
 server.get('/:username/:repo/:branch?', (req, res) => {
 
     if (!req.params.branch) {
