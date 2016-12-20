@@ -99,16 +99,34 @@ server.get('/:username/:repo/:branch?', (req, res) => {
 
                 } else {
 
-                    renderer(body).then(content => {
+                    raspar.fetch(`https://api.github.com/repos/${req.params.username}/${req.params.repo}/releases`, {
+                        'requestOptions': {
+                            'headers': {
+                                'Authorization': `token ${process.env.GITHUB_API_KEY}`,
+                                'User-Agent': 'doxdox.org'
+                            }
+                        }
+                    }).then(data => {
 
-                        repos.save({
-                            '_id': docs ? docs._id : null,
-                            'content': encodeURIComponent(content),
-                            'createdAt': new Date(),
-                            'url': req.path
-                        }, () => {
+                        const releases = JSON.parse(data.body)
+                            .filter(release => !release.draft)
+                            .map(release => ({'version': release.name}));
 
-                            res.send(content);
+                        renderer(body, {
+                            releases,
+                            'url': `${req.protocol}://${req.headers.host}/${req.params.username}/${req.params.repo}`
+                        }).then(content => {
+
+                            repos.save({
+                                '_id': docs ? docs._id : null,
+                                'content': encodeURIComponent(content),
+                                'createdAt': new Date(),
+                                'url': req.path
+                            }, () => {
+
+                                res.send(content);
+
+                            });
 
                         });
 
@@ -119,27 +137,6 @@ server.get('/:username/:repo/:branch?', (req, res) => {
             });
 
         }
-
-    });
-
-});
-
-server.get('/api/:username/:repo/releases', (req, res) => {
-
-    raspar.fetch(`https://api.github.com/repos/${req.params.username}/${req.params.repo}/releases`, {
-        'requestOptions': {
-            'headers': {
-                'Authorization': `token ${process.env.GITHUB_API_KEY}`,
-                'User-Agent': 'doxdox.org'
-            }
-        }
-    }).then(data => {
-
-        const releases = JSON.parse(data.body)
-            .filter(release => !release.draft)
-            .map(release => release.name);
-
-        res.json(releases);
 
     });
 
