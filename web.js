@@ -110,7 +110,10 @@ server.get('/:username/:repo/:branch?', (req, res) => {
 
                         const releases = JSON.parse(data.body)
                             .filter(release => !release.draft)
-                            .map(release => ({'version': release.name.replace(/^v/i, '')}));
+                            .map(release => ({
+                                'name': release.name.replace(/^v/i, ''),
+                                'version': release.name
+                            }));
 
                         renderer(body, {
                             releases,
