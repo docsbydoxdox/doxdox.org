@@ -112,7 +112,7 @@ server.get('/:username/:repo/:branch?', (req, res) => {
                             .filter(release => !release.draft)
                             .map(release => ({
                                 'name': (release.tag_name || release.name).replace(/^v/i, ''),
-                                'version': (release.tag_name || release.name)
+                                'version': release.tag_name || release.name
                             }));
 
                         renderer(body, {
