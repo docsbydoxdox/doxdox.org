@@ -179,7 +179,7 @@
                 <label for="releases">Releases:</label>
                 <select name="releases" id="releases">
                     <option disabled="disabled">Versions</option>
-                    <option value="{{../url}}/">Current Version</option>
+                    <option value="{{url}}/">Current Version</option>
                     {{#each releases}}
                     <option value="{{../url}}/{{version}}"{{#ifCond ../pkg.version name}}selected="selected"{{/ifCond}}>{{name}}</option>
                     {{/each}}
