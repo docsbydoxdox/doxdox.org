@@ -1,0 +1,14 @@
+@import 'colors';
+
+.page-footer {
+
+    padding: 4rem 0;
+    color: $theme-main-text;
+    text-align: center;
+    background-color: $theme-main;
+
+    a {
+        color: inherit;
+    }
+
+}

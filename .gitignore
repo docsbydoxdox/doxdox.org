@@ -2,4 +2,6 @@ node_modules/
 
 temp/
 
+static/css/styles.css
+
 .env

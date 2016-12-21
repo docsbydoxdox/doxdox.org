@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<title>doxdox - A simple solution for auto generated documentation.</title>
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+
+<body>
+
+<header class="page-header">
+
+    <nav class="header-nav">
+        <ul>
+            <li><a href="#getting-started">Getting Started</a></li>
+            <li><a href="https://doxdox.org/neogeek/doxdox">Documentation</a></li>
+            <li><a href="#plugins">Plugins</a></li>
+            <li><a href="https://github.com/neogeek/doxdox">View on GitHub</a></li>
+        </ul>
+    </nav>
+
+    <div class="promo">
+
+        <div class="copy">
+
+            <div class="inner">
+
+                <h1 class="logo">doxdox</h1>
+
+                <blockquote class="tagline">A simple solution for auto generated documentation.</blockquote>
+
+                <p><b>doxdox</b> is a documentation generator that converts JSDoc comment blocks into easy to read Bootstrap and Markdown documentation files.</p>
+
+                <div class="actions">
+                    <a href="#getting-started" class="btn">Get Started Now</a>
+                    <a href="https://github.com/neogeek/doxdox" class="btn">View on GitHub</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="screenshots">
+            <img src="/images/screenshot-paas.png">
+            <img src="/images/screenshot-dash.png">
+        </div>
+
+    </div>
+
+</header>
+
+<main class="page-content">
+
+    <section id="intro">
+
+        <div class="step" data-step-num="01">
+
+            <h3>Take JSDoc comment blocks ...</h3>
+
+            <img src="/images/screenshot-jsdoc.png">
+
+        </div>
+
+        <div class="step" data-step-num="02">
+
+            <h3>... and turn them into easy to read documentation!</h3>
+
+            <figure>
+
+                <img src="/images/screenshot-desktop.jpg">
+
+                <figcaption>Bootstrap template plugin, included with doxdox</figcaption>
+
+            </figure>
+
+        </div>
+
+    </section>
+
+    <section id="getting-started">
+
+        <h2><span>Getting Started</span></h2>
+
+        <div class="step">
+
+            <h3>Install doxdox with NPM</h3>
+
+            <pre>$ npm install doxdox -g</pre>
+
+        </div>
+
+        <div class="step">
+
+            <h3>Generate Documentation</h3>
+
+            <pre>$ doxdox 'lib/**/*.js' --layout markdown --output DOCUMENTATION.md</pre>
+
+            <p class="read-more"><a href="https://github.com/neogeek/doxdox#layouts">Read more about the different layouts available.</a></p>
+
+        </div>
+
+    </section>
+
+    <div class="plugins">
+
+        <section id="plugins">
+
+            <h2><span>Plugins</span></h2>
+
+            <div class="plugin-wrapper">
+
+                {{#each plugins}}
+
+                <div class="plugin">
+                    <p>
+                        <a href="https://www.npmjs.org/package/{{package.name}}" class="plugin-name">{{package.name}}</a>
+                    </p>
+                    <p>
+                        <a href="https://www.npmjs.org/package/{{package.name}}"><img src="http://img.shields.io/npm/v/{{package.name}}.svg?style=flat" alt="NPM Version"></a>
+                        <a href="https://doxdox.org/neogeek/{{package.name}}"><img src="https://doxdox.org/images/badge-flat.svg" alt="Latest Documentation"></a>
+                    </p>
+                    <p class="plugin-description">{{package.description}}</p>
+                </div>
+
+                {{/each}}
+
+            </div>
+
+            <p class="read-more">See more plugins at <a href="https://www.npmjs.com/search?q=doxdox+plugin">npmjs.com</a>.</p>
+
+        </section>
+
+    </div>
+
+</main>
+
+<footer class="page-footer">
+
+    <p>Made with ♥ by <a href="https://github.com/neogeek">@neogeek</a></p>
+
+</footer>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-54493930-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+</body>
+</html>

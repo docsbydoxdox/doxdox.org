@@ -9,6 +9,12 @@ const request = require('request');
 const express = require('express');
 const server = express();
 
+const hbs = require('express-hbs');
+
+server.engine('hbs', hbs.express4());
+server.set('view engine', 'hbs');
+server.set('views', path.join(__dirname, '/src/views'));
+
 const MongoClient = require('mongodb').MongoClient;
 
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/doxdox';
@@ -46,6 +52,20 @@ server.get('/', (req, res, next) => {
     }
 
     next();
+
+});
+
+server.get('/', (req, res) => {
+
+    raspar.fetch('https://api.npms.io/v2/search?from=0&q=doxdox%20plugin&size=10')
+        .then(res => JSON.parse(res.body))
+        .then(data => {
+
+            res.render('index', {
+                'plugins': data.results
+            });
+
+        });
 
 });
 
