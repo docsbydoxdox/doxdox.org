@@ -55,6 +55,10 @@ const renderer = (body, {releases, url}) => {
 
                                 }
 
+                            }).catch(err => {
+
+                                console.log(err);
+
                             });
 
                     });
