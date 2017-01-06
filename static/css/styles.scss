@@ -77,9 +77,13 @@ $breakpoint-header-promo: 65rem;
         @include prefix-value('display', 'flex');
         position: relative;
 
-        @media (min-width: $breakpoint-header-promo) {
-            padding: 2rem 0 0 0;
-            width: 50vw;
+        .inner {
+
+            @media (min-width: $breakpoint-header-promo) {
+                padding: 2rem 0 0 0;
+                width: 50vw;
+            }
+
         }
 
         img {
