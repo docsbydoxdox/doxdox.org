@@ -2,6 +2,7 @@ node_modules/
 
 temp/
 
+static/.sass-cache/
 static/css/styles.css
 
 .env
