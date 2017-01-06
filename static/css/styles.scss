@@ -1,3 +1,4 @@
+@import 'mixins';
 @import 'colors';
 
 * {
@@ -25,18 +26,18 @@ $breakpoint-header-promo: 65rem;
 
 .promo {
 
-    flex: 1;
+    @include prefix('flex', '1');
     overflow: hidden;
 
     @media (min-width: $breakpoint-header-promo) {
-        display: flex;
+        @include prefix-value('display', 'flex');
     }
 
     .copy {
 
         padding: 3rem;
-        flex: 1;
-        display: flex;
+        @include prefix('flex', '1');
+        @include prefix-value('display', 'flex');
         align-items: center;
         justify-content: center;
         text-align: center;
@@ -72,8 +73,8 @@ $breakpoint-header-promo: 65rem;
 
     .screenshots {
 
-        flex: 0;
-        display: flex;
+        @include prefix('flex', '0');
+        @include prefix-value('display', 'flex');
         position: relative;
 
         @media (min-width: $breakpoint-header-promo) {
@@ -85,7 +86,7 @@ $breakpoint-header-promo: 65rem;
 
             max-width: 100%;
             height: auto;
-            align-self: flex-end;
+            @include prefix('align-self', 'flex-end');
             position: relative;
             z-index: 1;
 
@@ -159,12 +160,12 @@ $breakpoint-header-promo: 65rem;
 
         @media (min-width: 50rem) {
 
-            display: flex;
-            flex-wrap: wrap;
+            @include prefix-value('display', 'flex');
+            @include prefix('flex-wrap', 'wrap');
 
             .plugin {
-                flex: 1;
-                flex-basis: calc(50% - 1rem);
+                @include prefix('flex', '1');
+                @include prefix-value('flex-basis', 'calc(50% - 1rem)');
                 max-width: calc(50% - 1rem);
             }
 
