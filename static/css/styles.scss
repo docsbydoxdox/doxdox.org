@@ -145,16 +145,6 @@ $breakpoint-header-promo: 65rem;
         margin-bottom: 3rem;
     }
 
-    &[data-step-num]:before {
-        content: attr(data-step-num);
-        display: block;
-        margin: 0 auto;
-        font-size: 3rem;
-        font-weight: 200;
-        color: #aaa;
-        text-align: center;
-    }
-
 }
 
 #intro, #getting-started {
