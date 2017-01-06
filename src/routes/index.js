@@ -13,11 +13,11 @@ const renderer = require('../utils/doxdox').renderer;
 
 const CACHE_TIMEOUT_IN_MINUTES = 30;
 
-const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/doxdox';
+const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/doxdox';
 
 let repos = null;
 
-MongoClient.connect(mongoURI, (err, db) => {
+MongoClient.connect(MONGO_URI, (err, db) => {
 
     repos = db.collection('repos');
 
