@@ -484,6 +484,8 @@
 
     $(window).on('scroll', handleScrollEvent);
 
+    handleScrollEvent();
+
     $('#releases').on('change', function () {
 
         var $this = $(this);
@@ -491,8 +493,6 @@
         window.location.href = $(this).val();
 
     });
-
-    handleScrollEvent();
 
 })();
 
