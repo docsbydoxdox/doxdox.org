@@ -127,8 +127,12 @@ $breakpoint-header-promo: 65rem;
         border: 3px solid #fff;
     }
 
-    .btn:not(:last-of-type) {
-        margin-right: .5rem;
+    @media (min-width: $breakpoint-header-promo) {
+
+        .btn:not(:last-of-type) {
+            margin-right: .5rem;
+        }
+
     }
 
 }
