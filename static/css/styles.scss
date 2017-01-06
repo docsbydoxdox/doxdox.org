@@ -89,6 +89,7 @@ $breakpoint-header-promo: 65rem;
         img {
 
             max-width: 100%;
+            display: block;
             height: auto;
             @include prefix('align-self', 'flex-end');
             position: relative;
