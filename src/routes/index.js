@@ -67,19 +67,11 @@ module.exports = router => {
 
     router.get('/sitemap.txt', (req, res) => {
 
-        repos.find({}, {'url': 1}, (err, docs) => {
+        repos.distinct('url', (err, docs) => {
 
-            docs.toArray().then(repos => {
+            res.type('text');
 
-                res.type('text');
-
-                res.send(
-                    repos.map(repo => `${req.protocol}://${req.headers.host}${repo.url}`)
-                        .sort()
-                        .join('\n')
-                );
-
-            });
+            res.send(docs.sort().join('\n'));
 
         });
 
@@ -93,9 +85,21 @@ module.exports = router => {
 
         }
 
+        const {
+            branch,
+            repo,
+            username
+        } = req.params;
+
+        const url = `${req.protocol}://${req.headers.host}/${username}/${repo}`;
+
         ua.pageview(req.path, req.sessionID).send();
 
-        repos.findOne({'url': req.path}, (err, docs) => {
+        repos.findOne({
+            branch,
+            repo,
+            username
+        }, (err, docs) => {
 
             if (docs && moment(docs.createdAt).add(CACHE_TIMEOUT_IN_MINUTES, 'minutes')
                 .isAfter(new Date())) {
@@ -106,7 +110,7 @@ module.exports = router => {
 
                 request.get({
                     'encoding': null,
-                    'url': `https://github.com/${req.params.username}/${req.params.repo}/archive/${req.params.branch}.zip`
+                    'url': `https://github.com/${username}/${repo}/archive/${branch}.zip`
                 }, (err, response, body) => {
 
                     if (err || response.statusCode !== 200) {
@@ -115,7 +119,7 @@ module.exports = router => {
 
                     } else {
 
-                        raspar.fetch(`https://api.github.com/repos/${req.params.username}/${req.params.repo}/releases`, {
+                        raspar.fetch(`https://api.github.com/repos/${username}/${repo}/releases`, {
                             'requestOptions': {
                                 'headers': {
                                     'Authorization': `token ${process.env.GITHUB_API_KEY}`,
@@ -133,14 +137,17 @@ module.exports = router => {
 
                             renderer(body, {
                                 releases,
-                                'url': `${req.protocol}://${req.headers.host}/${req.params.username}/${req.params.repo}`
+                                url
                             }).then(content => {
 
                                 repos.save({
                                     '_id': docs ? docs._id : null,
+                                    branch,
                                     'content': encodeURIComponent(content),
                                     'createdAt': new Date(),
-                                    'url': req.path
+                                    repo,
+                                    url,
+                                    username
                                 }, () => {
 
                                     res.send(content);
