@@ -37,7 +37,7 @@ module.exports = router => {
 
                 if (urlPart) {
 
-                    res.redirect(`${urlPart[1]}/${urlPart[2]}/${urlPart[3] || ''}`);
+                    return res.redirect(`${urlPart[1]}/${urlPart[2]}/${urlPart[3] || ''}`);
 
                 }
 
@@ -45,7 +45,7 @@ module.exports = router => {
 
         }
 
-        next();
+        return next();
 
     });
 
