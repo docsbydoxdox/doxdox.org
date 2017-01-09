@@ -33,7 +33,7 @@ module.exports = router => {
 
             if (redirect.host === 'github.com') {
 
-                const urlPart = redirect.path.match(/^\/([^/]+)\/([^/]+)(?:\/tree\/([^/]+\/?))?/);
+                const urlPart = redirect.path.match(/^\/([^/]+)\/([^/]+)(?:\/tree\/(.+))?/);
 
                 if (urlPart) {
 
