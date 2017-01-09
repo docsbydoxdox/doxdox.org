@@ -7,9 +7,9 @@ const request = require('request');
 
 const ua = require('universal-analytics')(process.env.GA_TOKEN);
 
-const MongoClient = require('mongodb').MongoClient;
+const {MongoClient} = require('mongodb');
 
-const renderer = require('../utils/doxdox').renderer;
+const {renderer} = require('../utils/doxdox');
 
 const CACHE_TIMEOUT_IN_MINUTES = 30;
 

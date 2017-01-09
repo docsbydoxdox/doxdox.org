@@ -55,7 +55,8 @@ const renderer = (body, {releases, url}) => {
 
                                 }
 
-                            }).catch(err => {
+                            })
+                            .catch(err => {
 
                                 console.log(err);
 
