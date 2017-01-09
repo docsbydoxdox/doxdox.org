@@ -77,11 +77,11 @@ module.exports = router => {
 
     });
 
-    router.get('/:username/:repo/:branch?', (req, res) => {
+    router.get('/:username/:repo/*?', (req, res) => {
 
         if (!req.params.branch) {
 
-            req.params.branch = 'master';
+            req.params.branch = req.params[0] || 'master';
 
         }
 
