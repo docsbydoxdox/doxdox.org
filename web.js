@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 
 const session = require('express-session');
+const compression = require('compression');
 
 const enrouten = require('express-enrouten');
 
@@ -16,6 +17,8 @@ app.use(session({
     'saveUninitialized': true,
     'secret': process.env.SECRET || 'secret'
 }));
+
+app.use(compression());
 
 app.use(express.static(path.join(__dirname, '/static')));
 
