@@ -72,7 +72,11 @@ const renderer = (body, {releases, url}) => {
                     'weekday': 'long',
                     'year': 'numeric'
                 }).format(new Date())
-            }, config)))));
+            }, config)))))
+            .then(content => ({
+                config,
+                content
+            }));
 
 };
 

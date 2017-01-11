@@ -138,19 +138,21 @@ module.exports = router => {
                             renderer(body, {
                                 releases,
                                 url
-                            }).then(content => {
+                            }).then(output => {
 
                                 repos.save({
                                     '_id': docs ? docs._id : null,
                                     branch,
-                                    'content': encodeURIComponent(content),
+                                    'content': encodeURIComponent(output.content),
                                     'createdAt': new Date(),
+                                    'description': output.config.description,
                                     repo,
+                                    'title': output.config.title,
                                     url,
                                     username
                                 }, () => {
 
-                                    res.send(content);
+                                    res.send(output.content);
 
                                 });
 
