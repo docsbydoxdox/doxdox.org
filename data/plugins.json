@@ -1,0 +1,44 @@
+[
+    {
+        "package": {
+            "name": "doxdox-parser-dox",
+            "description": "Dox parser plugin for doxdox."
+        }
+    },
+    {
+        "package": {
+            "name": "doxdox-plugin-bootstrap",
+            "description": "Bootstrap template plugin for doxdox."
+        }
+    },
+    {
+        "package": {
+            "name": "doxdox-plugin-dash",
+            "description": "Dash export plugin for doxdox."
+        }
+    },
+    {
+        "package": {
+            "name": "doxdox-plugin-example",
+            "description": "Example template plugin for doxdox."
+        }
+    },
+    {
+        "package": {
+            "name": "doxdox-plugin-github-wiki",
+            "description": "GitHub wiki export plugin for doxdox."
+        }
+    },
+    {
+        "package": {
+            "name": "doxdox-plugin-handlebars",
+            "description": "Custom Handlebars template plugin for doxdox."
+        }
+    },
+    {
+        "package": {
+            "name": "doxdox-plugin-markdown",
+            "description": "Markdown template plugin for doxdox."
+        }
+    }
+]

@@ -11,6 +11,8 @@ const {MongoClient} = require('mongodb');
 
 const {renderer} = require('../utils/doxdox');
 
+const plugins = require('../../data/plugins.json');
+
 const CACHE_TIMEOUT_IN_MINUTES = 30;
 
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/doxdox';
@@ -51,17 +53,11 @@ module.exports = router => {
 
     router.get('/', (req, res) => {
 
-        raspar.fetch('https://api.npms.io/v2/search?from=0&q=doxdox%20plugin&size=10')
-            .then(res => JSON.parse(res.body))
-            .then(data => {
+        ua.pageview(req.path, req.sessionID).send();
 
-                ua.pageview(req.path, req.sessionID).send();
-
-                res.render('index', {
-                    'plugins': data.results
-                });
-
-            });
+        res.render('index', {
+            plugins
+        });
 
     });
 
