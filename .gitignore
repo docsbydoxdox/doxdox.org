@@ -3,6 +3,8 @@ node_modules/
 temp/
 
 static/.sass-cache/
+
+static/css/error.css
 static/css/styles.css
 
 .env

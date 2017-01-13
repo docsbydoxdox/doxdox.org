@@ -150,9 +150,27 @@ module.exports = router => {
 
                                     res.send(output.content);
 
+                                })
+                                .catch(err => {
+
+                                    res.status(500);
+                                    res.render('error', {err});
+
                                 });
 
+                            })
+                            .catch(err => {
+
+                                res.status(500);
+                                res.render('error', {err});
+
                             });
+
+                        })
+                        .catch(err => {
+
+                            res.status(500);
+                            res.render('error', {err});
 
                         });
 

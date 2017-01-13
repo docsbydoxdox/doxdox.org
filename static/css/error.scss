@@ -1,0 +1,15 @@
+@import 'mixins';
+@import 'colors';
+@import 'base';
+
+body {
+    margin: 1rem;
+}
+
+h1 {
+    font-weight: normal;
+}
+
+p {
+    margin: 1rem 0;
+}
