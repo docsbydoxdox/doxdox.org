@@ -1,22 +1,6 @@
 @import 'mixins';
 @import 'colors';
-
-* {
-    margin: 0; padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica', 'Arial', sans-serif;
-    font-size: 1.2em;
-    line-height: 1.3;
-    color: #222;
-    letter-spacing: 0.01em;
-}
-
-a {
-    color: $theme-main;
-}
+@import 'base';
 
 @import 'header';
 @import 'content';
