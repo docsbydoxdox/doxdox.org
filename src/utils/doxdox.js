@@ -59,7 +59,7 @@ const renderer = (body, {releases, url}) => {
 
                     });
 
-                sequence.then(() => {
+                sequence = sequence.then(() => {
 
                     if (!files.length) {
 
