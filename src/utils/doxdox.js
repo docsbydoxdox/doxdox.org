@@ -59,15 +59,21 @@ const renderer = (body, {releases, url}) => {
 
                     });
 
-                if (!files.length) {
+                sequence.then(() => {
 
-                    throw new Error('No JavaScript files found.');
+                    console.log(files);
 
-                } else if (typeof config.pkg === 'undefined') {
+                    if (!files.length) {
 
-                    throw new Error('package.json missing.');
+                        throw new Error('No JavaScript files found.');
 
-                }
+                    } else if (typeof config.pkg === 'undefined') {
+
+                        throw new Error('package.json missing.');
+
+                    }
+
+                });
 
                 return sequence;
 
