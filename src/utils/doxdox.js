@@ -61,8 +61,6 @@ const renderer = (body, {releases, url}) => {
 
                 sequence.then(() => {
 
-                    console.log(files);
-
                     if (!files.length) {
 
                         throw new Error('No JavaScript files found.');
