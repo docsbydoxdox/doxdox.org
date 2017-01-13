@@ -29,8 +29,8 @@
   "scripts": {
     "start": "node web.js",
     "build": "npm run build:css",
-    "build:css": "node-sass --output-style compressed --output static/css static/css/styles.scss",
-    "watch:css": "node-sass --output-style compressed --watch --recursive --output static/css static/css/styles.scss",
+    "build:css": "node-sass --output-style compressed --output static/css static/css/",
+    "watch:css": "node-sass --output-style compressed --watch --recursive --output static/css static/css/",
     "postinstall": "npm run build"
   },
   "repository": {
