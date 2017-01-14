@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@neogeek/eslint-config-standards": "1.11.0",
-    "eslint": "3.13.0"
+    "eslint": "3.13.1"
   },
   "scripts": {
     "start": "node web.js",
