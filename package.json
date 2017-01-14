@@ -6,7 +6,6 @@
     "node": ">=7.0"
   },
   "main": "web.js",
-  "license": "MIT",
   "dependencies": {
     "compression": "1.6.2",
     "doxdox": "2.0.1",
