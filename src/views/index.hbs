@@ -62,7 +62,41 @@
 
             <h3>Take JSDoc comment blocks ...</h3>
 
-            <img srcset="/images/screenshot-jsdoc-2x.png, /images/screenshot-jsdoc.png 500w" src="/images/screenshot-jsdoc.png">
+            <div class="highlight jsdoc-example-code"><pre><span class="pl-c"><span class="pl-c">/**</span></span>
+<span class="pl-c"> * Parse array of directory globs and/or files, and then render the parsed data through the defined layout plugin.</span>
+<span class="pl-c"> *</span>
+<span class="pl-c"> *     parseInputs(['src/*.js'], {'ignore': [], 'parser': 'dox', 'layout': 'markdown'}).then(content =&gt; {});</span>
+<span class="pl-c"> *</span>
+<span class="pl-c"> * <span class="pl-k">@param</span> <span class="pl-en">{Array}</span> <span class="pl-smi">inputs</span> Array of directory globs and/or files.</span>
+<span class="pl-c"> * <span class="pl-k">@param</span> <span class="pl-en">{Object}</span> <span class="pl-smi">config</span> Configuration object.</span>
+<span class="pl-c"> * <span class="pl-k">@param</span> <span class="pl-en">{String}</span> <span class="pl-smi">config.ignore</span> Array of paths to ignore.</span>
+<span class="pl-c"> * <span class="pl-k">@param</span> <span class="pl-en">{String}</span> <span class="pl-smi">config.parser</span> String representing the parser to be used.</span>
+<span class="pl-c"> * <span class="pl-k">@param</span> <span class="pl-en">{String}</span> <span class="pl-smi">config.layout</span> String representing the layout plugin to be used.</span>
+<span class="pl-c"> * <span class="pl-k">@return</span> <span class="pl-en">{Object}</span> Promise</span>
+<span class="pl-c"> * <span class="pl-k">@public</span></span>
+<span class="pl-c"> <span class="pl-c">*/</span></span></pre></div>
+
+            <script>
+
+            (function () {
+
+                var jsdocExampleCode = document.querySelector('.jsdoc-example-code');
+
+                jsdocExampleCode.addEventListener('click', function () {
+
+                    if (window.getSelection) {
+
+                        var range = document.createRange();
+                        range.selectNode(jsdocExampleCode);
+                        window.getSelection().addRange(range)
+
+                    }
+
+                });
+
+            }());
+
+            </script>
 
         </div>
 
