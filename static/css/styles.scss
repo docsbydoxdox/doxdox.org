@@ -3,6 +3,7 @@
 @import 'base';
 
 @import 'header';
+@import 'form';
 @import 'content';
 @import 'footer';
 
@@ -133,7 +134,7 @@ $breakpoint-header-promo: 65rem;
 
 }
 
-#intro, #getting-started {
+#intro, #getting-started, #using-paas {
     margin: 2rem auto 4rem;
 }
 

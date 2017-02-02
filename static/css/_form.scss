@@ -1,0 +1,34 @@
+form {
+
+    fieldset {
+        border: 0;
+    }
+
+    input, button {
+        padding: 0.5rem;
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+    .username-and-repo {
+        border: 0;
+        background-color: #f6f6f6;
+    }
+
+    .btn {
+        padding: 1rem;
+        border: 0;
+        color: $theme-main-text;
+        background-color: $theme-main;
+        cursor: pointer;
+    }
+
+    .row {
+        margin: 2rem 0;
+    }
+
+    &.form-documentation-redirect {
+        text-align: center;
+    }
+
+}

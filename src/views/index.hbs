@@ -140,6 +140,48 @@
 
     </section>
 
+    <section id="using-paas">
+
+        <h2><span>Using doxdox.org</span></h2>
+
+        <form class="form-documentation-redirect">
+
+            <fieldset>
+
+                <div class="row">
+                    <label for="username-and-repo"><span class="https">https</span>://doxdox.org/</label>
+                    <input type="text" name="username-and-repo" id="username-and-repo" class="username-and-repo" placeholder="<username>/<repo>">
+                </div>
+
+                <div class="row">
+                    <button type="submit" class="btn">View Documentation</button>
+                </div>
+
+            </fieldset>
+
+        </form>
+
+    </section>
+
+    <script>
+
+    (function () {
+
+        var formDocumentationRedirect = document.querySelector('.form-documentation-redirect');
+        var inputUsernameAndRepo = document.querySelector('.username-and-repo');
+
+        formDocumentationRedirect.addEventListener('submit', function (e) {
+
+            e.preventDefault();
+
+            window.location.href = window.location.origin + '/' + inputUsernameAndRepo.value;
+
+        });
+
+    }());
+
+    </script>
+
     <div class="plugins">
 
         <section id="plugins">
