@@ -149,6 +149,7 @@ module.exports = router => {
                                 }));
 
                             renderer(body, {
+                                branch,
                                 releases,
                                 url
                             }).then(output => {

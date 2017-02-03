@@ -5,9 +5,10 @@ const loaders = require('doxdox/lib/loaders');
 const FILE_PATTERN_MATCH = /\.js$|^package\.json$/;
 const FILE_PATTERN_IGNORE = /(^test(s)?\/|(Grunt|Gulp)file\.js|\.min)/;
 
-const renderer = (body, {releases, url}) => {
+const renderer = (body, {branch, releases, url}) => {
 
     const config = {
+        branch,
         'layout': 'templates/bootstrap.hbs',
         'parser': 'dox',
         releases,

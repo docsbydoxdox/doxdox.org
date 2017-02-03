@@ -181,7 +181,7 @@
                     <option disabled="disabled">Versions</option>
                     <option value="{{url}}/">Latest</option>
                     {{#each releases}}
-                    <option value="{{../url}}/{{version}}"{{#ifCond ../pkg.version name}}selected="selected"{{/ifCond}}>{{name}}</option>
+                    <option value="{{../url}}/{{version}}"{{#ifCond ../branch version}}selected="selected"{{/ifCond}}>{{name}}</option>
                     {{/each}}
                 </select>
 
