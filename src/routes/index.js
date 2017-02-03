@@ -53,11 +53,28 @@ module.exports = router => {
 
     router.get('/', (req, res) => {
 
-        ua.pageview(req.path, req.sessionID).send();
+        repos
+            .find({
+                'branch': 'master'
+            }, {
+                'limit': 5,
+                'sort': {
+                    'createdAt': -1
+                }
+            }, (err, docs) => {
 
-        res.render('index', {
-            plugins
-        });
+                docs.toArray((err, docs) => {
+
+                    ua.pageview(req.path, req.sessionID).send();
+
+                    res.render('index', {
+                        docs,
+                        plugins
+                    });
+
+                });
+
+            });
 
     });
 

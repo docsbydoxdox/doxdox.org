@@ -161,6 +161,22 @@
 
         </form>
 
+        <div class="latest-documentation">
+
+            <h3>Lastest Documentation Generated</h3>
+
+            <ul>
+
+                {{#each docs}}
+
+                <li><a href="{{url}}">{{title}} - {{description}}</a></li>
+
+                {{/each}}
+
+            </ul>
+
+        </div>
+
     </section>
 
     <script>
