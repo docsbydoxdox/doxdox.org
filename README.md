@@ -3,12 +3,12 @@
 
 ## Adding the doxdox Badge To Your Repo
 
-![Latest Documentation](http://doxdox.org/images/badge-flat.svg)
+![Latest Documentation](https://doxdox.org/images/badge-flat.svg)
 
 ```markdown
-[![Latest Documentation](http://doxdox.org/images/badge-flat.svg)](http://doxdox.org/)
+[![Latest Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/)
 ```
 
 ```markdown
-[![Latest Documentation](http://doxdox.org/images/badge-flat.svg)](http://doxdox.org/<username>/<repo>)
+[![Latest Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/<username>/<repo>)
 ```
