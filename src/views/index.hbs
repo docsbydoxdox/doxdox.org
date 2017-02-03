@@ -204,7 +204,11 @@
 
             e.preventDefault();
 
-            window.location.href = window.location.origin + '/' + inputUsernameAndRepo.value;
+            var path = inputUsernameAndRepo.value;
+
+            path = path.replace(/(http(s)?\:\/\/)?(www.)?github\.com\//, '');
+
+            window.location.href = window.location.origin + '/' + path;
 
         });
 
