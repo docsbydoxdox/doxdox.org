@@ -18,7 +18,7 @@
     }
 
     h3 {
-        margin: 1em auto;
+        margin: 2em auto 1.5rem;
         font-size: 2rem;
     }
 
@@ -38,12 +38,13 @@
     }
 
     pre {
-        margin: 1rem 0;
+        margin: 2rem 0;
         padding: 1rem;
         font-family: 'Lucida Sans Typewriter', monospace;
         font-size: 1rem;
         color: $theme-code-text;
         background-color: $theme-code;
+        text-align: left;
         overflow: auto;
     }
 
