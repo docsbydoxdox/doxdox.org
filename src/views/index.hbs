@@ -165,11 +165,11 @@
 
             <h3>Lastest Documentation Generated</h3>
 
-            <ul>
+            <ul class="repo-list">
 
                 {{#each docs}}
 
-                <li><a href="{{url}}">{{title}} - {{description}}</a></li>
+                <li><a href="{{url}}"><b>{{title}}</b> &#8212; {{description}}</a></li>
 
                 {{/each}}
 
@@ -181,7 +181,13 @@
 
             <h3>Add a badge to your GitHub README.md</h3>
 
+            <p>Specify the username (or organization) and repo name to directly link to documentation generated from the master branch.</p>
+
             <pre>[![Latest Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/&lt;username&gt;/&lt;repo&gt;)</pre>
+
+            <p>You can also omit the repo path entirely and doxdox.org will automatically detect what branch it's coming from and redirect you.</p>
+
+            <pre>[![Latest Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/)</pre>
 
         </div>
 

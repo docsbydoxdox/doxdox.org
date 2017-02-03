@@ -138,6 +138,15 @@ $breakpoint-header-promo: 65rem;
     margin: 2rem auto 4rem;
 }
 
+.repo-list {
+
+    li {
+        margin: 1rem 0;
+        list-style: none;
+    }
+
+}
+
 .plugins {
 
     background-color: $theme-light;
