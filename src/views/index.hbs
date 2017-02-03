@@ -62,7 +62,7 @@
 
             <h3>Convert JSDoc comment blocks ...</h3>
 
-            <div class="highlight jsdoc-example-code"><pre><span class="pl-c"><span class="pl-c">/**</span></span>
+            <div class="highlight"><pre><span class="pl-c"><span class="pl-c">/**</span></span>
 <span class="pl-c"> * Parse array of directory globs and/or files, and then render the parsed data through the defined layout plugin.</span>
 <span class="pl-c"> *</span>
 <span class="pl-c"> *     parseInputs(['src/*.js'], {'ignore': [], 'parser': 'dox', 'layout': 'markdown'}).then(content =&gt; {});</span>
@@ -124,7 +124,9 @@
 
             <h3>Install doxdox with NPM</h3>
 
-            <pre>$ npm install doxdox -g</pre>
+            <div class="highlight">
+                <pre>$ npm install doxdox -g</pre>
+            </div>
 
         </div>
 
@@ -132,7 +134,9 @@
 
             <h3>Generate Documentation</h3>
 
-            <pre>$ doxdox 'lib/**/*.js' --layout markdown --output DOCUMENTATION.md</pre>
+            <div class="highlight">
+                <pre>$ doxdox <span class="pl-s"><span class="pl-pds">'</span>lib/**/*.js<span class="pl-pds">'</span></span> --layout markdown --output DOCUMENTATION.md</pre>
+            </div>
 
             <p class="read-more"><a href="https://github.com/neogeek/doxdox#layouts">Read more about the different layouts available.</a></p>
 
@@ -143,6 +147,8 @@
     <section id="using-paas">
 
         <h2><span>Using doxdox.org</span></h2>
+
+        <p>doxdox.org is a hosted, free to use, feature rich, version of doxdox. It currently supports GitHub URLs (more hosting services will be added later).</p>
 
         <form class="form-documentation-redirect">
 
@@ -181,13 +187,17 @@
 
             <h3>Add a badge to your GitHub README.md</h3>
 
-            <p>Specify the username (or organization) and repo name to directly link to documentation generated from the master branch.</p>
+            <p>Specify a GitHub path with the user and repo name to link to dynamically generated documentation.</p>
 
-            <pre>[![Latest Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/&lt;username&gt;/&lt;repo&gt;)</pre>
+            <div class="highlight">
+                <pre>[![<span class="pl-en">Latest Documentation</span>](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/&lt;username&gt;/&lt;repo&gt;)</pre>
+            </div>
 
             <p>You can also omit the repo path entirely and doxdox.org will automatically detect what branch it's coming from and redirect you.</p>
 
-            <pre>[![Latest Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/)</pre>
+            <div class="highlight">
+                <pre>[![<span class="pl-en">Latest Documentation</span>](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/)</pre>
+            </div>
 
         </div>
 
