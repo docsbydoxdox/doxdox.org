@@ -1,0 +1,136 @@
+.jumbotron {
+    margin-bottom: 0;
+    border-radius: 0;
+    background-color: #2B303E;
+    -webkit-font-smoothing: antialiased;
+}
+
+.jumbotron h1 {
+    font-size: 3.5rem;
+    line-height: 1;
+}
+
+.jumbotron h1,
+.jumbotron h1 a {
+    color: #eee;
+}
+
+.jumbotron small {
+    font-weight: 200;
+    color: #777;
+}
+
+.jumbotron p {
+    font-size: 1.5rem;
+    font-weight: 200;
+    line-height: 1.2;
+    color: #ccc;
+}
+
+.wrap {
+    padding: 2rem 1rem;
+}
+
+.search {
+    margin: 0 0 1rem 0;
+    width: 90%;
+}
+
+.menu {
+    padding: 0;
+}
+
+.menu li {
+    list-style: none;
+}
+
+.menu li ul {
+    padding: 0;
+}
+
+.menu li a {
+    display: block;
+    padding: .25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.menu .file {
+    color: #E54D89;
+}
+
+.menu .file + ul {
+    margin: 0 0 1rem 0;
+}
+
+.menu .scope-private a {
+    color: #8BAAC6;
+}
+
+.method {
+    margin: 0 0 4rem 0;
+}
+
+.method .method-name {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.method .method-name + .scope-private {
+    color: #AAAAAA;
+}
+
+.method section {
+    margin: 2rem 0;
+}
+
+.method h3 {
+    margin: 0 0 1rem 0;
+}
+
+.method .table,
+.method .table p,
+.method .table ol,
+.method .table ul {
+    margin: 0;
+}
+
+.permalink {
+    position: absolute;
+    margin-left: -1em;
+    font-weight: normal;
+    color: #eee;
+    text-decoration: none;
+}
+
+.permalink:hover {
+    color: #E54D89;
+}
+
+.back-to-top {
+    display: none;
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    padding: .5rem .6rem;
+    line-height: 1;
+    background: #fff;
+    z-index: 999;
+}
+
+.back-to-top.visible {
+    display: block;
+}
+
+.back-to-top svg {
+    vertical-align: middle;
+}
+
+.bs-footer {
+    margin: 3rem auto;
+    color: #777;
+    text-align: center;
+}
