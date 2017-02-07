@@ -114,8 +114,10 @@ module.exports = router => {
             username
         }, (err, docs) => {
 
-            if (docs && moment(docs.createdAt).add(CACHE_TIMEOUT_IN_MINUTES, 'minutes')
-                .isAfter(new Date())) {
+            if (docs &&
+                moment(docs.createdAt).add(CACHE_TIMEOUT_IN_MINUTES, 'minutes').isAfter(new Date()) &&
+                req.query.nocache === undefined
+            ) {
 
                 res.send(decodeURIComponent(docs.content));
 
