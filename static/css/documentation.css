@@ -134,3 +134,7 @@
     color: #777;
     text-align: center;
 }
+
+.doxdox-readme-badge {
+    vertical-align: baseline;
+}
