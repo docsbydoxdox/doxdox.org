@@ -25,6 +25,8 @@
 
     var $methodLinks = $('.method-link');
 
+    var $methodNames = $('.method .method-name');
+
     $('#search-methods').on('keyup', function (e) {
 
         var query = new RegExp(e.target.value.replace(' ', '|'), 'ig');
@@ -40,6 +42,22 @@
             } else {
 
                 $this.show();
+
+            }
+
+        });
+
+        $methodNames.each(function () {
+
+            var $this = $(this);
+
+            if (!$this.text().match(query)) {
+
+                $this.closest('.method').hide();
+
+            } else {
+
+                $this.closest('.method').show();
 
             }
 
