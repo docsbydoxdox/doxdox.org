@@ -11,7 +11,7 @@ const {MongoClient} = require('mongodb');
 
 const {renderer} = require('../utils/doxdox');
 
-const plugins = require('../../data/plugins.json');
+const plugins = require('../../data/plugins.json').results;
 
 const CACHE_TIMEOUT_IN_MINUTES = 30;
 
