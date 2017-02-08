@@ -69,7 +69,7 @@
 
     });
 
-    if (urlQuery.length > 1) {
+    if (urlQuery && urlQuery.length > 1) {
 
         $searchInput.val(urlQuery[1]).trigger('keyup');
 
