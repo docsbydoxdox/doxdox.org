@@ -23,11 +23,13 @@
         hljs.highlightBlock(this);
     });
 
+    var $searchInput = $('#search-methods');
     var $methodLinks = $('.method-link');
-
     var $methodNames = $('.method .method-name');
 
-    $('#search-methods').on('keyup', function (e) {
+    var urlQuery = window.location.search.match(/q=([^&]+)/);
+
+    $searchInput.on('keyup', function (e) {
 
         var query = new RegExp(e.target.value.replace(' ', '|'), 'ig');
 
@@ -63,7 +65,15 @@
 
         });
 
+        window.history.pushState({}, '', window.location.pathname + '?q=' + e.target.value);
+
     });
+
+    if (urlQuery.length > 1) {
+
+        $searchInput.val(urlQuery[1]).trigger('keyup');
+
+    }
 
     $(window).on('scroll', handleScrollEvent);
 
