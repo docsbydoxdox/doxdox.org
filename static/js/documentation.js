@@ -65,7 +65,7 @@
 
         });
 
-        window.history.pushState({}, '', window.location.pathname + '?q=' + e.target.value);
+        window.history.replaceState({}, '', window.location.pathname + '?q=' + e.target.value);
 
     });
 
