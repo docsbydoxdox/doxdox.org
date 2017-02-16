@@ -69,6 +69,12 @@
 
     });
 
+    $searchInput.on('search', function () {
+
+        $searchInput.trigger('keyup');
+
+    });
+
     if (urlQuery && urlQuery.length > 1) {
 
         $searchInput.val(urlQuery[1]).trigger('keyup');
