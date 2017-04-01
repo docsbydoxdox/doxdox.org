@@ -22,8 +22,8 @@
     "universal-analytics": "0.4.13"
   },
   "devDependencies": {
-    "@neogeek/eslint-config-standards": "1.15.0",
-    "eslint": "3.19.0"
+    "@neogeek/eslint-config-standards": "^1.15.0",
+    "eslint": "^3.19.0"
   },
   "scripts": {
     "start": "node web.js",
