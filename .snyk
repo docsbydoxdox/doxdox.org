@@ -1,0 +1,22 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.12.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:hoek:20180212':
+    - raspar > request > hawk > hoek:
+        patched: '2018-06-20T21:58:36.238Z'
+    - raspar > request > hawk > boom > hoek:
+        patched: '2018-06-20T21:58:36.238Z'
+    - raspar > request > hawk > sntp > hoek:
+        patched: '2018-06-20T21:58:36.238Z'
+    - raspar > request > hawk > cryptiles > boom > hoek:
+        patched: '2018-06-20T21:58:36.238Z'
+    - node-sass > node-gyp > request > hawk > hoek:
+        patched: '2018-06-20T21:58:36.238Z'
+    - node-sass > node-gyp > request > hawk > boom > hoek:
+        patched: '2018-06-20T21:58:36.238Z'
+    - node-sass > node-gyp > request > hawk > sntp > hoek:
+        patched: '2018-06-20T21:58:36.238Z'
+    - node-sass > node-gyp > request > hawk > cryptiles > boom > hoek:
+        patched: '2018-06-20T21:58:36.238Z'
