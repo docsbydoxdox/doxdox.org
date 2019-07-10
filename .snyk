@@ -1,0 +1,20 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-450202:
+    - express-hbs > lodash:
+        patched: '2019-07-10T06:01:26.709Z'
+    - node-sass > sass-graph > lodash:
+        patched: '2019-07-10T06:01:26.709Z'
+    - express-hbs > handlebars > async > lodash:
+        patched: '2019-07-10T06:01:26.709Z'
+    - node-sass > gaze > globule > lodash:
+        patched: '2019-07-10T06:01:26.709Z'
+    - doxdox > doxdox-plugin-bootstrap > handlebars > async > lodash:
+        patched: '2019-07-10T06:01:26.709Z'
+    - doxdox > doxdox-plugin-handlebars > handlebars > async > lodash:
+        patched: '2019-07-10T06:01:26.709Z'
+    - doxdox > doxdox-plugin-markdown > handlebars > async > lodash:
+        patched: '2019-07-10T06:01:26.709Z'
