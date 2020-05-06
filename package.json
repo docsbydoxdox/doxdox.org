@@ -19,7 +19,8 @@
     "node-sass": "4.11.0",
     "raspar": "1.1.2",
     "request": "2.88.0",
-    "universal-analytics": "0.4.20"
+    "universal-analytics": "0.4.20",
+    "snyk": "^1.319.0"
   },
   "devDependencies": {
     "@neogeek/eslint-config-standards": "4.1.0",
@@ -31,11 +32,14 @@
     "build": "npm run build:css",
     "build:css": "node-sass --output-style compressed --output static/css static/css/",
     "watch:css": "node-sass --output-style compressed --watch --recursive --output static/css static/css/",
-    "postinstall": "npm run build && make fetch"
+    "postinstall": "npm run build && make fetch",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/neogeek/doxdox-server.git"
   },
-  "private": true
+  "private": true,
+  "snyk": true
 }
