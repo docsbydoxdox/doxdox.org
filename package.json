@@ -17,7 +17,7 @@
     "moment": "2.24.0",
     "mongodb": "3.1.13",
     "node-sass": "4.11.0",
-    "raspar": "1.1.2",
+    "raspar": "2.0.0",
     "request": "2.88.0",
     "universal-analytics": "0.4.20"
   },
