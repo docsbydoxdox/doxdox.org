@@ -1,125 +1,135 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale=1">
-<title>{{title}}{{#if branch}} ({{branch}}){{/if}}{{#if description}} &#8212; {{description}}{{/if}} &#8212; doxdox.org powered documentation</title>
-{{#if description}}
-<meta name="description" content="{{description}}">
-{{/if}}
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <title>{{title}}{{#if branch}} ({{branch}}){{/if}}{{#if description}} &#8212; {{description}}{{/if}} &#8212;
+        doxdox.org powered documentation</title>
+    {{#if description}}
+    <meta name="description" content="{{description}}">
+    {{/if}}
 
-<meta property="og:type" content="article"/>
-<meta property="og:site_name" content="doxdox.org"/>
-<meta property="og:title" content="{{title}}"/>
-{{#if description}}
-<meta property="og:description" content="{{description}}"/>
-{{/if}}
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="doxdox.org" />
+    <meta property="og:title" content="{{title}}" />
+    {{#if description}}
+    <meta property="og:description" content="{{description}}" />
+    {{/if}}
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:site" content="@docsbydoxdox"/>
-<meta name="twitter:title" content="{{title}}"/>
-{{#if description}}
-<meta name="twitter:description" content="{{description}}"/>
-{{/if}}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@docsbydoxdox" />
+    <meta name="twitter:title" content="{{title}}" />
+    {{#if description}}
+    <meta name="twitter:description" content="{{description}}" />
+    {{/if}}
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-<link rel="stylesheet" href="/css/documentation.css">
+    <link rel="stylesheet" href="/css/documentation.css">
 
 </head>
 
 <body>
 
-<header class="navbar navbar-light bg-faded">
+    <header class="navbar navbar-light bg-faded">
 
-    <div class="container">
+        <div class="container">
 
-        <form>
+            <form>
 
-            <div>
+                <div>
 
-                <label for="releases">Releases:</label>
-                <select name="releases" id="releases">
-                    <option value="{{url}}/">Latest</option>
-                    {{#each releases}}
-                    <option value="{{../url}}/{{version}}"{{#ifCond ../branch version}}selected="selected"{{/ifCond}}>{{name}}</option>
-                    {{/each}}
-                </select>
+                    <label for="releases">Releases:</label>
+                    <select name="releases" id="releases">
+                        <option value="{{url}}/">Latest</option>
+                        {{#each releases}}
+                        <option value="{{../url}}/{{version}}" {{#ifCond ../branch version}}selected="selected"
+                            {{/ifCond}}>{{name}}</option>
+                        {{/each}}
+                    </select>
 
-            </div>
+                </div>
 
-        </form>
+            </form>
 
-    </div>
+        </div>
 
-</header>
+    </header>
 
-<a href="#" class="back-to-top"><svg xmlns="http://www.w3.org/2000/svg" width="13px" height="14px" viewBox="0 0 13 14"><path d="M7.18761156,13 L7.18761156,5.49249703 L10.4587853,5.49249703 L5.09931763,0.113558129 L-0.26015,5.49249703 L3.01102371,5.49249703 L3.01102371,13 L7.18761156,13 Z" fill="#428bca"></path></svg> Back to Top</a>
+    <a href="#" class="back-to-top"><svg xmlns="http://www.w3.org/2000/svg" width="13px" height="14px"
+            viewBox="0 0 13 14">
+            <path
+                d="M7.18761156,13 L7.18761156,5.49249703 L10.4587853,5.49249703 L5.09931763,0.113558129 L-0.26015,5.49249703 L3.01102371,5.49249703 L3.01102371,13 L7.18761156,13 Z"
+                fill="#428bca"></path>
+        </svg> Back to Top</a>
 
-<div class="jumbotron">
+    <div class="jumbotron">
 
-    <div class="container">
+        <div class="container">
 
-        <h1>
-            {{#if pkg.homepage}}
+            <h1>
+                {{#if pkg.homepage}}
                 <a href="{{pkg.homepage}}">{{title}}</a>
-            {{else}}
+                {{else}}
                 {{title}}
-            {{/if}}
-            {{#if branch}}<small>{{branch}}</small>{{/if}}
-            <a href="{{url}}/{{branch}}"><img src="https://doxdox.org/images/badge-flat.svg" class="doxdox-readme-badge"></a>
-        </h1>
+                {{/if}}
+                {{#if branch}}<small>{{branch}}</small>{{/if}}
+                <a href="{{url}}/{{branch}}"><img src="https://doxdox.org/images/badge-flat.svg"
+                        class="doxdox-readme-badge"></a>
+            </h1>
 
-        {{#if description}}<p>{{description}}</p>{{/if}}
+            {{#if description}}<p>{{description}}</p>{{/if}}
+
+        </div>
 
     </div>
 
-</div>
+    <div class="wrap">
 
-<div class="wrap">
+        <div class="container">
 
-    <div class="container">
+            <div class="row">
 
-        <div class="row">
+                <div class="col-md-3 hidden-sm hidden-xs">
 
-            <div class="col-md-3 hidden-sm hidden-xs">
+                    <input type="search" class="form-control search" id="search-methods" placeholder="Search..."
+                        autocomplete="off">
 
-                <input type="search" class="form-control search" id="search-methods" placeholder="Search..." autocomplete="off">
+                    <ul class="menu">
 
-                <ul class="menu">
+                        {{#each files}}
 
-                    {{#each files}}
+                        <li>
+                            <a href="#{{name}}" class="file"><b>{{name}}</b></a>
+                            <ul>
 
-                    <li>
-                        <a href="#{{name}}" class="file"><b>{{name}}</b></a>
-                        <ul>
+                                {{#each methods}}
 
-                        {{#each methods}}
+                                <li class="method-link scope-{{#if isPrivate}}private{{else}}public{{/if}}">
+                                    <a href="#{{uid}}" title="{{name}}">{{name}}</a>
+                                </li>
 
-                        <li class="method-link scope-{{#if isPrivate}}private{{else}}public{{/if}}">
-                            <a href="#{{uid}}" title="{{name}}">{{name}}</a>
+                                {{/each}}
+
+                            </ul>
+
                         </li>
 
                         {{/each}}
 
-                        </ul>
+                    </ul>
 
-                    </li>
+                </div>
 
-                    {{/each}}
+                <div class="col-md-9">
 
-                </ul>
+                    {{#each files}}
 
-            </div>
+                    <a id="{{name}}"></a>
 
-            <div class="col-md-9">
-
-                {{#each files}}
-
-                <a id="{{name}}"></a>
-
-                {{#each methods}}
+                    {{#each methods}}
 
                     <div class="method scope-{{#if isPrivate}}private{{else}}public{{/if}}">
 
@@ -156,22 +166,22 @@
                                     </thead>
 
                                     <tbody>
-                                    {{#each tags.param}}
-                                    <tr>
-                                        <td>{{name}}</td>
-                                        <td>
-                                            {{#each types}}
-                                            <code>{{.}}</code>
-                                            {{/each}}
-                                        </td>
-                                        <td>{{{markdown description}}}</td>
-                                        <td>
-                                            {{#if isOptional}}
+                                        {{#each tags.param}}
+                                        <tr>
+                                            <td>{{name}}</td>
+                                            <td>
+                                                {{#each types}}
+                                                <code>{{.}}</code>
+                                                {{/each}}
+                                            </td>
+                                            <td>{{{markdown description}}}</td>
+                                            <td>
+                                                {{#if isOptional}}
                                                 <span class="tag tag-default">Optional</span>
-                                            {{/if}}
-                                        </td>
-                                    </tr>
-                                    {{/each}}
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        {{/each}}
                                     </tbody>
 
                                 </table>
@@ -200,22 +210,22 @@
                                     </thead>
 
                                     <tbody>
-                                    {{#each tags.property}}
-                                    <tr>
-                                        <td>{{name}}</td>
-                                        <td>
-                                            {{#each types}}
-                                            <code>{{.}}</code>
-                                            {{/each}}
-                                        </td>
-                                        <td>{{{markdown description}}}</td>
-                                        <td>
-                                            {{#if isOptional}}
+                                        {{#each tags.property}}
+                                        <tr>
+                                            <td>{{name}}</td>
+                                            <td>
+                                                {{#each types}}
+                                                <code>{{.}}</code>
+                                                {{/each}}
+                                            </td>
+                                            <td>{{{markdown description}}}</td>
+                                            <td>
+                                                {{#if isOptional}}
                                                 <span class="tag tag-default">Optional</span>
-                                            {{/if}}
-                                        </td>
-                                    </tr>
-                                    {{/each}}
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                        {{/each}}
                                     </tbody>
 
                                 </table>
@@ -233,7 +243,7 @@
 
                             {{#each tags.example}}
 
-                                <pre><code class="hljs javascript">{{{highlightBlock .}}}</code></pre>
+                            <pre><code class="hljs javascript">{{{highlightBlock .}}}</code></pre>
 
                             {{/each}}
 
@@ -247,17 +257,17 @@
 
                             {{#if tags.return.length}}
 
-                                {{#each tags.return}}
+                            {{#each tags.return}}
 
-                                    <p>
-                                        {{#each types}}
-                                            <code>{{.}}</code>
-                                        {{/each}}
-                                    </p>
-
-                                    {{{markdown description}}}
-
+                            <p>
+                                {{#each types}}
+                                <code>{{.}}</code>
                                 {{/each}}
+                            </p>
+
+                            {{{markdown description}}}
+
+                            {{/each}}
 
                             {{else}}
 
@@ -269,9 +279,11 @@
 
                     </div>
 
-                {{/each}}
+                    {{/each}}
 
-                {{/each}}
+                    {{/each}}
+
+                </div>
 
             </div>
 
@@ -279,23 +291,23 @@
 
     </div>
 
-</div>
+    <footer class="bs-footer">
 
-<footer class="bs-footer">
+        <div class="container">
 
-    <div class="container">
+            <p>Documentation generated with <a href="https://github.com/neogeek/doxdox">doxdox</a> and <a
+                    href="https://github.com/neogeek/doxdox-server">doxdox-server</a>.</p>
+            <p>Generated on {{timestamp}}</p>
 
-        <p>Documentation generated with <a href="https://github.com/neogeek/doxdox">doxdox</a> and <a href="https://github.com/neogeek/doxdox-server">doxdox-server</a>.</p>
-        <p>Generated on {{timestamp}}</p>
+        </div>
 
-    </div>
+    </footer>
 
-</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-<script src="/js/documentation.js"></script>
+    <script src="/js/documentation.js"></script>
 
 </body>
+
 </html>

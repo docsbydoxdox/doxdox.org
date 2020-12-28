@@ -12,17 +12,19 @@ const hbs = require('express-hbs');
 
 app.disable('x-powered-by');
 
-app.use(session({
-    'resave': true,
-    'saveUninitialized': true,
-    'secret': process.env.SECRET || 'secret'
-}));
+app.use(
+    session({
+        resave: true,
+        saveUninitialized: true,
+        secret: process.env.SECRET || 'secret'
+    })
+);
 
 app.use(compression());
 
 app.use(express.static(path.join(__dirname, '/static')));
 
-app.use(enrouten({'directory': 'src/routes'}));
+app.use(enrouten({ directory: 'src/routes' }));
 
 app.engine('hbs', hbs.express4());
 

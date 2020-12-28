@@ -1,37 +1,29 @@
 @import 'colors';
 
 .page-header {
-
     color: $theme-main-text;
     background-color: $theme-main;
 
     .header-nav {
-
         background-color: darken($theme-main, 10%);
 
         ul {
-
-            padding: .5rem;
+            padding: 0.5rem;
 
             text-align: center;
 
             li {
-
                 list-style: none;
                 display: inline-block;
 
                 a {
                     display: block;
-                    padding: .75rem 1rem;
+                    padding: 0.75rem 1rem;
                     color: inherit;
                     text-align: center;
                     text-decoration: none;
                 }
-
             }
-
         }
-
     }
-
 }

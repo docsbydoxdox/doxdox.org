@@ -1,68 +1,74 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale=1">
-<title>doxdox - A simple solution for auto generated documentation.</title>
-<meta name="description" content="doxdox is a documentation generator that converts JSDoc comment blocks into easy to read Bootstrap and Markdown documentation files.">
-<link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <title>doxdox - A simple solution for auto generated documentation.</title>
+    <meta name="description"
+        content="doxdox is a documentation generator that converts JSDoc comment blocks into easy to read Bootstrap and Markdown documentation files.">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 
 <body>
 
-<header class="page-header">
+    <header class="page-header">
 
-    <nav class="header-nav">
-        <ul>
-            <li><a href="#getting-started">Getting Started</a></li>
-            <li><a href="/neogeek/doxdox">Documentation</a></li>
-            <li><a href="https://discuss.doxdox.org/">Forum</a></li>
-            <li><a href="#plugins">Plugins</a></li>
-            <li><a href="https://github.com/neogeek/doxdox">View on GitHub</a></li>
-        </ul>
-    </nav>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="/neogeek/doxdox">Documentation</a></li>
+                <li><a href="https://discuss.doxdox.org/">Forum</a></li>
+                <li><a href="#plugins">Plugins</a></li>
+                <li><a href="https://github.com/neogeek/doxdox">View on GitHub</a></li>
+            </ul>
+        </nav>
 
-    <div class="promo">
+        <div class="promo">
 
-        <div class="copy">
+            <div class="copy">
 
-            <div class="inner">
+                <div class="inner">
 
-                <h1 class="logo">doxdox</h1>
+                    <h1 class="logo">doxdox</h1>
 
-                <blockquote class="tagline">A simple solution for auto generated documentation.</blockquote>
+                    <blockquote class="tagline">A simple solution for auto generated documentation.</blockquote>
 
-                <p><b>doxdox</b> is a documentation generator that converts JSDoc comment blocks into easy to read Bootstrap and Markdown documentation files.</p>
+                    <p><b>doxdox</b> is a documentation generator that converts JSDoc comment blocks into easy to read
+                        Bootstrap and Markdown documentation files.</p>
 
-                <div class="actions">
-                    <a href="#getting-started" class="btn">Get Started Now</a>
-                    <a href="https://github.com/neogeek/doxdox" class="btn">View on GitHub</a>
+                    <div class="actions">
+                        <a href="#getting-started" class="btn">Get Started Now</a>
+                        <a href="https://github.com/neogeek/doxdox" class="btn">View on GitHub</a>
+                    </div>
+
                 </div>
 
             </div>
 
-        </div>
-
-        <div class="screenshots">
-            <div class="inner">
-                <img srcset="/images/screenshot-paas-2x.png, /images/screenshot-paas.png 500w" src="/images/screenshot-paas.png">
-                <img srcset="/images/screenshot-dash-2x.png, /images/screenshot-dash.png 500w" src="/images/screenshot-dash.png">
+            <div class="screenshots">
+                <div class="inner">
+                    <img srcset="/images/screenshot-paas-2x.png, /images/screenshot-paas.png 500w"
+                        src="/images/screenshot-paas.png">
+                    <img srcset="/images/screenshot-dash-2x.png, /images/screenshot-dash.png 500w"
+                        src="/images/screenshot-dash.png">
+                </div>
             </div>
+
         </div>
 
-    </div>
+    </header>
 
-</header>
+    <main class="page-content">
 
-<main class="page-content">
+        <section id="intro">
 
-    <section id="intro">
+            <div class="step">
 
-        <div class="step">
+                <h3>Convert JSDoc comment blocks ...</h3>
 
-            <h3>Convert JSDoc comment blocks ...</h3>
-
-            <div class="highlight jsdoc-example-code"><pre><span class="pl-c"><span class="pl-c">/**</span></span>
+                <div class="highlight jsdoc-example-code">
+                    <pre><span class="pl-c"><span class="pl-c">/**</span></span>
 <span class="pl-c"> * Parse array of directory globs and/or files, and then render the parsed data through the defined layout plugin.</span>
 <span class="pl-c"> *</span>
 <span class="pl-c"> *     parseInputs(['src/*.js'], {'ignore': [], 'parser': 'dox', 'layout': 'markdown'}).then(content =&gt; {});</span>
@@ -74,196 +80,209 @@
 <span class="pl-c"> * <span class="pl-k">@param</span> <span class="pl-en">{String}</span> <span class="pl-smi">config.layout</span> String representing the layout plugin to be used.</span>
 <span class="pl-c"> * <span class="pl-k">@return</span> <span class="pl-en">{Object}</span> Promise</span>
 <span class="pl-c"> * <span class="pl-k">@public</span></span>
-<span class="pl-c"> <span class="pl-c">*/</span></span></pre></div>
+<span class="pl-c"> <span class="pl-c">*/</span></span></pre>
+                </div>
 
-            <script>
+                <script>
+
+                    (function () {
+
+                        var jsdocExampleCode = document.querySelector('.jsdoc-example-code');
+
+                        jsdocExampleCode.addEventListener('click', function () {
+
+                            if (window.getSelection) {
+
+                                var range = document.createRange();
+                                range.selectNode(jsdocExampleCode);
+                                window.getSelection().addRange(range)
+
+                            }
+
+                        });
+
+                    }());
+
+                </script>
+
+            </div>
+
+            <div class="step">
+
+                <h3>... into easy to read documentation!</h3>
+
+                <figure>
+
+                    <a href="/neogeek/doxdox"><img
+                            srcset="/images/screenshot-desktop-2x.jpg, /images/screenshot-desktop.jpg 500w"
+                            src="/images/screenshot-desktop.jpg"></a>
+
+                    <figcaption>Bootstrap template plugin, included with doxdox</figcaption>
+
+                </figure>
+
+            </div>
+
+        </section>
+
+        <section id="getting-started">
+
+            <h2><span>Getting Started</span></h2>
+
+            <div class="step">
+
+                <h3>Install doxdox with NPM</h3>
+
+                <div class="highlight">
+                    <pre>$ npm install doxdox -g</pre>
+                </div>
+
+            </div>
+
+            <div class="step">
+
+                <h3>Generate documentation</h3>
+
+                <div class="highlight">
+                    <pre>$ doxdox <span class="pl-s"><span class="pl-pds">'</span>lib/**/*.js<span class="pl-pds">'</span></span> --layout markdown --output DOCUMENTATION.md</pre>
+                </div>
+
+                <p class="read-more"><a href="https://github.com/neogeek/doxdox#layouts">Read more about the different
+                        layouts available.</a></p>
+
+            </div>
+
+        </section>
+
+        <section id="using-paas">
+
+            <h2><span>Using doxdox.org</span></h2>
+
+            <p>doxdox.org is a hosted, free to use, version of doxdox. It currently only supports GitHub repositories.
+            </p>
+
+            <form class="form-documentation-redirect">
+
+                <fieldset>
+
+                    <div class="row">
+                        <label for="username-and-repo"><span class="https">https</span>://doxdox.org/</label>
+                        <input type="text" name="username-and-repo" id="username-and-repo" class="username-and-repo"
+                            placeholder="<username>/<repo>" pattern=".+/.+" required>
+                    </div>
+
+                    <div class="row">
+                        <button type="submit" class="btn">View Documentation</button>
+                    </div>
+
+                </fieldset>
+
+            </form>
+
+            <div class="step">
+
+                <h3>Lastest documentation generated</h3>
+
+                <ul class="repo-list">
+
+                    {{#each docs}}
+
+                    <li><a href="{{url}}">{{username}}/{{repo}}</a></li>
+
+                    {{/each}}
+
+                </ul>
+
+            </div>
+
+            <div class="step">
+
+                <h3>Add a badge to your GitHub README.md</h3>
+
+                <p>Specify a GitHub repo path to link to dynamically generated documentation.</p>
+
+                <div class="highlight">
+                    <pre>[![<span class="pl-en">Latest Documentation</span>](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/&lt;username&gt;/&lt;repo&gt;)</pre>
+                </div>
+
+                <p>Or you can omit the repo path entirely and doxdox.org will automatically detect what repo and branch
+                    it's coming from and redirect you.</p>
+
+                <div class="highlight">
+                    <pre>[![<span class="pl-en">Latest Documentation</span>](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/)</pre>
+                </div>
+
+            </div>
+
+        </section>
+
+        <script>
 
             (function () {
 
-                var jsdocExampleCode = document.querySelector('.jsdoc-example-code');
+                var formDocumentationRedirect = document.querySelector('.form-documentation-redirect');
+                var inputUsernameAndRepo = document.querySelector('.username-and-repo');
 
-                jsdocExampleCode.addEventListener('click', function () {
+                formDocumentationRedirect.addEventListener('submit', function (e) {
 
-                    if (window.getSelection) {
+                    e.preventDefault();
 
-                        var range = document.createRange();
-                        range.selectNode(jsdocExampleCode);
-                        window.getSelection().addRange(range)
+                    var path = inputUsernameAndRepo.value;
 
-                    }
+                    path = path.replace(/(http(s)?\:\/\/)?(www.)?github\.com\//, '');
+
+                    window.location.href = window.location.origin + '/' + path;
 
                 });
 
             }());
 
-            </script>
+        </script>
 
-        </div>
+        <div class="plugins">
 
-        <div class="step">
+            <section id="plugins">
 
-            <h3>... into easy to read documentation!</h3>
+                <h2><span>Plugins</span></h2>
 
-            <figure>
+                <div class="plugin-wrapper">
 
-                <a href="/neogeek/doxdox"><img srcset="/images/screenshot-desktop-2x.jpg, /images/screenshot-desktop.jpg 500w" src="/images/screenshot-desktop.jpg"></a>
+                    {{#each plugins}}
 
-                <figcaption>Bootstrap template plugin, included with doxdox</figcaption>
+                    <div class="plugin">
+                        <p>
+                            <a href="https://www.npmjs.org/package/{{package.name}}"
+                                class="plugin-name">{{package.name}}</a>
+                        </p>
+                        <p>
+                            <a href="https://www.npmjs.org/package/{{package.name}}"><img
+                                    src="https://img.shields.io/npm/v/{{package.name}}.svg?style=flat"
+                                    alt="NPM Version"></a>
+                            <a href="https://doxdox.org/neogeek/{{package.name}}"><img
+                                    src="https://doxdox.org/images/badge-flat.svg" alt="Latest Documentation"></a>
+                        </p>
+                        <p class="plugin-description">{{package.description}}</p>
+                    </div>
 
-            </figure>
+                    {{/each}}
 
-        </div>
-
-    </section>
-
-    <section id="getting-started">
-
-        <h2><span>Getting Started</span></h2>
-
-        <div class="step">
-
-            <h3>Install doxdox with NPM</h3>
-
-            <div class="highlight">
-                <pre>$ npm install doxdox -g</pre>
-            </div>
-
-        </div>
-
-        <div class="step">
-
-            <h3>Generate documentation</h3>
-
-            <div class="highlight">
-                <pre>$ doxdox <span class="pl-s"><span class="pl-pds">'</span>lib/**/*.js<span class="pl-pds">'</span></span> --layout markdown --output DOCUMENTATION.md</pre>
-            </div>
-
-            <p class="read-more"><a href="https://github.com/neogeek/doxdox#layouts">Read more about the different layouts available.</a></p>
-
-        </div>
-
-    </section>
-
-    <section id="using-paas">
-
-        <h2><span>Using doxdox.org</span></h2>
-
-        <p>doxdox.org is a hosted, free to use, version of doxdox. It currently only supports GitHub repositories.</p>
-
-        <form class="form-documentation-redirect">
-
-            <fieldset>
-
-                <div class="row">
-                    <label for="username-and-repo"><span class="https">https</span>://doxdox.org/</label>
-                    <input type="text" name="username-and-repo" id="username-and-repo" class="username-and-repo" placeholder="<username>/<repo>" pattern=".+/.+" required>
                 </div>
 
-                <div class="row">
-                    <button type="submit" class="btn">View Documentation</button>
-                </div>
+                <p class="read-more">See more plugins at <a
+                        href="https://www.npmjs.com/search?q=doxdox+plugin">npmjs.com</a>.</p>
 
-            </fieldset>
-
-        </form>
-
-        <div class="step">
-
-            <h3>Lastest documentation generated</h3>
-
-            <ul class="repo-list">
-
-                {{#each docs}}
-
-                <li><a href="{{url}}">{{username}}/{{repo}}</a></li>
-
-                {{/each}}
-
-            </ul>
+            </section>
 
         </div>
 
-        <div class="step">
+    </main>
 
-            <h3>Add a badge to your GitHub README.md</h3>
+    <footer class="page-footer">
 
-            <p>Specify a GitHub repo path to link to dynamically generated documentation.</p>
+        <p>Made with ♥ by <a href="https://github.com/neogeek">@neogeek</a></p>
 
-            <div class="highlight">
-                <pre>[![<span class="pl-en">Latest Documentation</span>](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/&lt;username&gt;/&lt;repo&gt;)</pre>
-            </div>
-
-            <p>Or you can omit the repo path entirely and doxdox.org will automatically detect what repo and branch it's coming from and redirect you.</p>
-
-            <div class="highlight">
-                <pre>[![<span class="pl-en">Latest Documentation</span>](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/)</pre>
-            </div>
-
-        </div>
-
-    </section>
-
-    <script>
-
-    (function () {
-
-        var formDocumentationRedirect = document.querySelector('.form-documentation-redirect');
-        var inputUsernameAndRepo = document.querySelector('.username-and-repo');
-
-        formDocumentationRedirect.addEventListener('submit', function (e) {
-
-            e.preventDefault();
-
-            var path = inputUsernameAndRepo.value;
-
-            path = path.replace(/(http(s)?\:\/\/)?(www.)?github\.com\//, '');
-
-            window.location.href = window.location.origin + '/' + path;
-
-        });
-
-    }());
-
-    </script>
-
-    <div class="plugins">
-
-        <section id="plugins">
-
-            <h2><span>Plugins</span></h2>
-
-            <div class="plugin-wrapper">
-
-                {{#each plugins}}
-
-                <div class="plugin">
-                    <p>
-                        <a href="https://www.npmjs.org/package/{{package.name}}" class="plugin-name">{{package.name}}</a>
-                    </p>
-                    <p>
-                        <a href="https://www.npmjs.org/package/{{package.name}}"><img src="https://img.shields.io/npm/v/{{package.name}}.svg?style=flat" alt="NPM Version"></a>
-                        <a href="https://doxdox.org/neogeek/{{package.name}}"><img src="https://doxdox.org/images/badge-flat.svg" alt="Latest Documentation"></a>
-                    </p>
-                    <p class="plugin-description">{{package.description}}</p>
-                </div>
-
-                {{/each}}
-
-            </div>
-
-            <p class="read-more">See more plugins at <a href="https://www.npmjs.com/search?q=doxdox+plugin">npmjs.com</a>.</p>
-
-        </section>
-
-    </div>
-
-</main>
-
-<footer class="page-footer">
-
-    <p>Made with ♥ by <a href="https://github.com/neogeek">@neogeek</a></p>
-
-</footer>
+    </footer>
 
 </body>
+
 </html>

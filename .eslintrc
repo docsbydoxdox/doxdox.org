@@ -1,7 +1,5 @@
 {
-  "extends": [
-    "@neogeek/eslint-config-standards"
-  ],
+  "extends": ["@neogeek/eslint-config-standards"],
   "rules": {
     "handle-callback-err": 0,
     "id-length": 0,

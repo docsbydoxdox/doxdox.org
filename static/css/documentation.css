@@ -1,11 +1,11 @@
-input[type="search"]::-webkit-search-cancel-button {
+input[type='search']::-webkit-search-cancel-button {
     -webkit-appearance: searchfield-cancel-button;
 }
 
 .jumbotron {
     margin-bottom: 0;
     border-radius: 0;
-    background-color: #2B303E;
+    background-color: #2b303e;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -54,13 +54,13 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .menu li a {
     display: block;
-    padding: .25rem;
+    padding: 0.25rem;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .menu .file {
-    color: #E54D89;
+    color: #e54d89;
 }
 
 .menu .file + ul {
@@ -68,7 +68,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .menu .scope-private a {
-    color: #8BAAC6;
+    color: #8baac6;
 }
 
 .method {
@@ -84,7 +84,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .method .method-name + .scope-private {
-    color: #AAAAAA;
+    color: #aaaaaa;
 }
 
 .method section {
@@ -111,7 +111,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .permalink:hover {
-    color: #E54D89;
+    color: #e54d89;
 }
 
 .back-to-top {
@@ -119,7 +119,7 @@ input[type="search"]::-webkit-search-cancel-button {
     position: fixed;
     right: 1rem;
     bottom: 1rem;
-    padding: .5rem .6rem;
+    padding: 0.5rem 0.6rem;
     line-height: 1;
     background: #fff;
     z-index: 999;
