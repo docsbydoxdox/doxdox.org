@@ -15,8 +15,8 @@
     "express-session": "1.17.1",
     "jszip": "3.5.0",
     "moment": "2.29.1",
-    "mongodb": "3.6.3",
     "node-sass": "5.0.0",
+    "pg-promise": "10.8.6",
     "raspar": "2.1.0",
     "request": "2.88.0",
     "universal-analytics": "0.4.23"
