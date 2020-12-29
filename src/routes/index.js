@@ -7,7 +7,7 @@ const request = require('request');
 
 const ua = require('universal-analytics')(process.env.GA_TOKEN);
 
-const { MongoClient } = require('mongodb');
+const { Client } = require('pg');
 
 const { renderer } = require('../utils/doxdox');
 
@@ -15,13 +15,9 @@ const plugins = require('../../data/plugins.json').results;
 
 const CACHE_TIMEOUT_IN_MINUTES = 30;
 
-const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/doxdox';
+const client = new Client({ connectionString: process.env.DATABASE_URL });
 
-let repos = null;
-
-MongoClient.connect(MONGO_URI, (err, db) => {
-    repos = db.collection('repos');
-});
+client.connect();
 
 module.exports = router => {
     router.get('/', (req, res, next) => {
@@ -45,34 +41,33 @@ module.exports = router => {
     });
 
     router.get('/', (req, res) => {
-        repos.find(
-            {
-                branch: 'master'
-            },
-            {
-                limit: 5,
-                sort: {
-                    createdAt: -1
-                }
-            },
-            (err, docs) => {
-                docs.toArray((err, docs) => {
-                    ua.pageview(req.path, req.sessionID).send();
+        client.query(
+            'SELECT "url", "username", "repo" FROM "repo" ORDER BY "createdAt" DESC LIMIT 5',
+            (_, data) => {
+                ua.pageview(req.path, req.sessionID).send();
 
-                    res.render('index', {
-                        docs,
-                        plugins
-                    });
+                res.render('index', {
+                    docs: data && data.rowCount > 0 ? data.rows : [],
+                    plugins
                 });
             }
         );
     });
 
     router.get('/sitemap.txt', (req, res) => {
-        repos.distinct('url', (err, docs) => {
+        client.query('SELECT DISTINCT "url" FROM "repo"', (err, data) => {
             res.type('text');
 
-            res.send(docs.sort().join('\n'));
+            if (data && data.rowCount > 0) {
+                res.send(
+                    data.rows
+                        .reduce((acc, { url }) => [...acc, url], [])
+                        .sort()
+                        .join('\n')
+                );
+            } else {
+                res.send('');
+            }
         });
     });
 
@@ -87,21 +82,19 @@ module.exports = router => {
 
         ua.pageview(req.path, req.sessionID).send();
 
-        repos.findOne(
-            {
-                branch,
-                repo,
-                username
-            },
-            (err, docs) => {
+        client.query(
+            'SELECT * FROM "repo" WHERE "username" = $1 AND "repo" = $2 AND "branch" = $3',
+            [username, repo, branch],
+            (err, data) => {
                 if (
-                    docs &&
-                    moment(docs.createdAt)
+                    data &&
+                    data.rowCount != 0 &&
+                    moment(data.rows[0].createdAt)
                         .add(CACHE_TIMEOUT_IN_MINUTES, 'minutes')
                         .isAfter(new Date()) &&
                     req.query.nocache === undefined
                 ) {
-                    res.send(decodeURIComponent(docs.content));
+                    res.send(decodeURIComponent(data.rows[0].content));
                 } else {
                     request.get(
                         {
@@ -125,7 +118,7 @@ module.exports = router => {
                                         }
                                     )
                                     .then(data => {
-                                        const releases = JSON.parse(data.body)
+                                        const releases = JSON.parse(data)
                                             .filter(release => !release.draft)
                                             .map(release => ({
                                                 name: (
@@ -143,25 +136,20 @@ module.exports = router => {
                                             url
                                         })
                                             .then(output => {
-                                                repos.save(
-                                                    {
-                                                        _id: docs
-                                                            ? docs._id
-                                                            : null,
-                                                        branch,
-                                                        content: encodeURIComponent(
-                                                            output.content
-                                                        ),
-                                                        createdAt: new Date(),
-                                                        description:
-                                                            output.config
-                                                                .description,
+                                                client.query(
+                                                    'INSERT INTO "repo" ("createdAt", "username", "repo", "branch", "url", "title", "description", "content") VALUES(NOW(), $1, $2, $3, $4, $5, $6, $7)',
+                                                    [
+                                                        username,
                                                         repo,
-                                                        title:
-                                                            output.config.title,
+                                                        branch,
                                                         url,
-                                                        username
-                                                    },
+                                                        output.config.title,
+                                                        output.config
+                                                            .description,
+                                                        encodeURIComponent(
+                                                            output.content
+                                                        )
+                                                    ],
                                                     () => {
                                                         res.send(
                                                             output.content
