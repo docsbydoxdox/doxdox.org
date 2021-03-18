@@ -15,7 +15,12 @@ const plugins = require('../../data/plugins.json').results;
 
 const CACHE_TIMEOUT_IN_MINUTES = 30;
 
-const client = new Client({ connectionString: process.env.DATABASE_URL });
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
 
 client.connect();
 
