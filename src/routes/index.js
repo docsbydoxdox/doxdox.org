@@ -16,8 +16,9 @@ const plugins = require('../../data/plugins.json').results;
 const CACHE_TIMEOUT_IN_MINUTES = 30;
 
 const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
+    connectionString:
+        process.env.DATABASE_URL || 'postgres://localhost:5432/doxdox',
+    ssl: process.env.DATABASE_URL && {
         rejectUnauthorized: false
     }
 });
@@ -142,7 +143,7 @@ module.exports = router => {
                                         })
                                             .then(output => {
                                                 client.query(
-                                                    'INSERT INTO "repo" ("createdAt", "username", "repo", "branch", "url", "title", "description", "content") VALUES(NOW(), $1, $2, $3, $4, $5, $6, $7)',
+                                                    'SELECT * FROM "createRepo"($1, $2, $3, $4, $5, $6, $7)',
                                                     [
                                                         username,
                                                         repo,
