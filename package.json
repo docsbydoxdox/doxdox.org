@@ -16,7 +16,7 @@
     "express-session": "1.17.2",
     "jszip": "3.6.0",
     "moment": "2.29.1",
-    "node-sass": "6.0.1",
+    "node-sass": "7.0.0",
     "pg-promise": "10.10.2",
     "raspar": "2.1.0",
     "request": "2.88.0",
