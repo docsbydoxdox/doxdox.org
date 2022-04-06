@@ -15,7 +15,7 @@
     "express-hbs": "2.4.0",
     "express-session": "1.17.2",
     "jszip": "3.6.0",
-    "moment": "2.29.1",
+    "moment": "2.29.2",
     "node-sass": "6.0.1",
     "pg-promise": "10.10.2",
     "raspar": "2.1.0",
